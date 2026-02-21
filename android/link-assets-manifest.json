@@ -1,0 +1,177 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/assets/fonts/vazir-font-v16.1.0/CHANGELOG.md",
+      "sha1": "f044ffeebb286ac4dfbd83ca53f5b55acd2247a5"
+    },
+    {
+      "path": "src/assets/fonts/vazir-font-v16.1.0/Farsi-Digits-Without-Latin/Vazir-Bold-FD-WOL.eot",
+      "sha1": "9edb35b7b546e0b223c35516d1273c02804a9060"
+    },
+    {
+      "path": "src/assets/fonts/vazir-font-v16.1.0/Farsi-Digits-Without-Latin/Vazir-Bold-FD-WOL.ttf",
+      "sha1": "b2deb38c541ed24827690772055dee336e256723"
+    },
+    {
+      "path": "src/assets/fonts/vazir-font-v16.1.0/Farsi-Digits-Without-Latin/Vazir-Bold-FD-WOL.woff",
+      "sha1": "8460cbed2dbad441f535844cc9b59c2fdd120837"
+    },
+    {
+      "path": "src/assets/fonts/vazir-font-v16.1.0/Farsi-Digits-Without-Latin/Vazir-Bold-FD-WOL.woff2",
+      "sha1": "03662753f935b1fdbfa034a051c18f8f589bc3c6"
+    },
+    {
+      "path": "src/assets/fonts/vazir-font-v16.1.0/Farsi-Digits-Without-Latin/Vazir-FD-WOL.eot",
+      "sha1": "bb986f3415f254724630379047cf56fbeb11f8be"
+    },
+    {
+      "path": "src/assets/fonts/vazir-font-v16.1.0/Farsi-Digits-Without-Latin/Vazir-FD-WOL.ttf",
+      "sha1": "64e1c27f72fa0a5c029cbbec68e9de945d75b9a8"
+    },
+    {
+      "path": "src/assets/fonts/vazir-font-v16.1.0/Farsi-Digits-Without-Latin/Vazir-FD-WOL.woff",
+      "sha1": "94b9717d09ecb1b916c11c26d1894bd7e7b89b08"
+    },
+    {
+      "path": "src/assets/fonts/vazir-font-v16.1.0/Farsi-Digits-Without-Latin/Vazir-FD-WOL.woff2",
+      "sha1": "e47f74b98ff8f07ad95004a7871636e3863fe9a5"
+    },
+    {
+      "path": "src/assets/fonts/vazir-font-v16.1.0/Farsi-Digits-Without-Latin/Vazir-Light-FD-WOL.eot",
+      "sha1": "5fa16f8bcda1d4a891ad5cb9b468f5e9e07f136b"
+    },
+    {
+      "path": "src/assets/fonts/vazir-font-v16.1.0/Farsi-Digits-Without-Latin/Vazir-Light-FD-WOL.ttf",
+      "sha1": "7c16ddaec6b4857c75bfab26bc9206410e5444bf"
+    },
+    {
+      "path": "src/assets/fonts/vazir-font-v16.1.0/Farsi-Digits-Without-Latin/Vazir-Light-FD-WOL.woff",
+      "sha1": "9610cc9635cf55376326995c0a2d1f9a23e40141"
+    },
+    {
+      "path": "src/assets/fonts/vazir-font-v16.1.0/Farsi-Digits-Without-Latin/Vazir-Light-FD-WOL.woff2",
+      "sha1": "0df847e53ac53e28bc55f752ab595267be7a72f8"
+    },
+    {
+      "path": "src/assets/fonts/vazir-font-v16.1.0/Farsi-Digits-Without-Latin/Vazir-Medium-FD-WOL.eot",
+      "sha1": "913b0da78c91d18ee1e8a20760893af258dbb312"
+    },
+    {
+      "path": "src/assets/fonts/vazir-font-v16.1.0/Farsi-Digits-Without-Latin/Vazir-Medium-FD-WOL.ttf",
+      "sha1": "59ae69b914a8ba525ec3f0e7df70d29bd9de4658"
+    },
+    {
+      "path": "src/assets/fonts/vazir-font-v16.1.0/Farsi-Digits-Without-Latin/Vazir-Medium-FD-WOL.woff",
+      "sha1": "edee970cedecfbb6758544ae3a29412f149d8459"
+    },
+    {
+      "path": "src/assets/fonts/vazir-font-v16.1.0/Farsi-Digits-Without-Latin/Vazir-Medium-FD-WOL.woff2",
+      "sha1": "adfd715f28f659edf4112372840a032b8a7851ff"
+    },
+    {
+      "path": "src/assets/fonts/vazir-font-v16.1.0/Farsi-Digits-Without-Latin/Vazir-Thin-FD-WOL.eot",
+      "sha1": "31abcbd73ac90146e1f497b0ae83b3f4c100abcd"
+    },
+    {
+      "path": "src/assets/fonts/vazir-font-v16.1.0/Farsi-Digits-Without-Latin/Vazir-Thin-FD-WOL.ttf",
+      "sha1": "dbfd1295644ffd2ff5e721fe95e758dd64183fb9"
+    },
+    {
+      "path": "src/assets/fonts/vazir-font-v16.1.0/Farsi-Digits-Without-Latin/Vazir-Thin-FD-WOL.woff",
+      "sha1": "f4a6273f9b77857d55eeb736ba616e377e69fa69"
+    },
+    {
+      "path": "src/assets/fonts/vazir-font-v16.1.0/Farsi-Digits-Without-Latin/Vazir-Thin-FD-WOL.woff2",
+      "sha1": "c26d21583cfba44baa02aef896c97ca9a8694f5c"
+    },
+    {
+      "path": "src/assets/fonts/vazir-font-v16.1.0/LICENSE",
+      "sha1": "f24914dc16a1b466dbd04c152826d46a7f0a9003"
+    },
+    {
+      "path": "src/assets/fonts/vazir-font-v16.1.0/README.md",
+      "sha1": "b1e173ffc53c828f75b518d94b2ac8afffc4b4d0"
+    },
+    {
+      "path": "src/assets/fonts/vazir-font-v16.1.0/Vazir-Bold.eot",
+      "sha1": "7abeb8d5a179533721f0707c539b29cb4b7e0cc2"
+    },
+    {
+      "path": "src/assets/fonts/vazir-font-v16.1.0/Vazir-Bold.ttf",
+      "sha1": "623b1914adc76c404cbb663691e0c01f85e7c55f"
+    },
+    {
+      "path": "src/assets/fonts/vazir-font-v16.1.0/Vazir-Bold.woff",
+      "sha1": "a4a3911685d7acf9930c3ac3ee17e263c21fc886"
+    },
+    {
+      "path": "src/assets/fonts/vazir-font-v16.1.0/Vazir-Bold.woff2",
+      "sha1": "931912999cd7b5a3bb16a72d4200a0af965e24f2"
+    },
+    {
+      "path": "src/assets/fonts/vazir-font-v16.1.0/Vazir-Light.eot",
+      "sha1": "7f2a93c5b0cb6a48c5263dbe8d0f350edf89d496"
+    },
+    {
+      "path": "src/assets/fonts/vazir-font-v16.1.0/Vazir-Light.ttf",
+      "sha1": "b35c6913136577d67475ba9cda393936e415c758"
+    },
+    {
+      "path": "src/assets/fonts/vazir-font-v16.1.0/Vazir-Light.woff",
+      "sha1": "ca651add9651ade6d80996019499a17df1b2f94e"
+    },
+    {
+      "path": "src/assets/fonts/vazir-font-v16.1.0/Vazir-Light.woff2",
+      "sha1": "fea481449150e5d9efd8acb68ad40e34db3fa2ee"
+    },
+    {
+      "path": "src/assets/fonts/vazir-font-v16.1.0/Vazir-Medium.eot",
+      "sha1": "4d5e701b4199985941ed8658f3f30996207d9f84"
+    },
+    {
+      "path": "src/assets/fonts/vazir-font-v16.1.0/Vazir-Medium.ttf",
+      "sha1": "c1c559a955309c1459c5eefb9854a18b9783b62b"
+    },
+    {
+      "path": "src/assets/fonts/vazir-font-v16.1.0/Vazir-Medium.woff",
+      "sha1": "7e627d8b4b694d3d466dad524b064a8f74ef6e26"
+    },
+    {
+      "path": "src/assets/fonts/vazir-font-v16.1.0/Vazir-Medium.woff2",
+      "sha1": "b05bceb4100fcb36fe24a2dbe79eb47f2742cd85"
+    },
+    {
+      "path": "src/assets/fonts/vazir-font-v16.1.0/Vazir-Thin.eot",
+      "sha1": "d9cf2fca77010e0d267e51d9ad15d9167e427427"
+    },
+    {
+      "path": "src/assets/fonts/vazir-font-v16.1.0/Vazir-Thin.ttf",
+      "sha1": "8525a907d3d5cf49a12e8f51f1fb847185a08d2d"
+    },
+    {
+      "path": "src/assets/fonts/vazir-font-v16.1.0/Vazir-Thin.woff",
+      "sha1": "074ca41bb4a1f6a21e93da4adc7fbe7c4beba4af"
+    },
+    {
+      "path": "src/assets/fonts/vazir-font-v16.1.0/Vazir-Thin.woff2",
+      "sha1": "68e0e7779a2d11aa357434cf77bb09de6bf1bd34"
+    },
+    {
+      "path": "src/assets/fonts/vazir-font-v16.1.0/Vazir.eot",
+      "sha1": "755e87c18dcab6faef77954f3654b433b73f0b15"
+    },
+    {
+      "path": "src/assets/fonts/vazir-font-v16.1.0/Vazir.ttf",
+      "sha1": "83cdd6b83472c395dd90ea731b5de0bc756c41d0"
+    },
+    {
+      "path": "src/assets/fonts/vazir-font-v16.1.0/Vazir.woff",
+      "sha1": "3ab31d78e3770eb174ce510ebe2d371f00d3a322"
+    },
+    {
+      "path": "src/assets/fonts/vazir-font-v16.1.0/Vazir.woff2",
+      "sha1": "c7aae29e63fd7540107bbfad2d467ae459bc60ea"
+    }
+  ]
+}

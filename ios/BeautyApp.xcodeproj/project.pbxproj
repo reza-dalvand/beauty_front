@@ -14,6 +14,49 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		7699B88040F8A987B510C191 /* libPods-BeautyApp-BeautyAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-BeautyApp-BeautyAppTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		B36B4186473E4C2FBD620BBB /* Vazir-Bold-FD-WOL.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B3605057A995412BB972493E /* Vazir-Bold-FD-WOL.ttf */; };
+		ADA3F299DFAC462F93B3BAC1 /* Vazir-FD-WOL.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2B2422AA82B04828AF0DA625 /* Vazir-FD-WOL.ttf */; };
+		FF89CB9436E343A79927FEE4 /* Vazir-Light-FD-WOL.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A29A04EB6C3C45019EE60AC3 /* Vazir-Light-FD-WOL.ttf */; };
+		FA485BD4D12A44A386B23252 /* Vazir-Medium-FD-WOL.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 31E1BC74998644D3BAC73ACF /* Vazir-Medium-FD-WOL.ttf */; };
+		69CA5F1529DC499EA832150E /* Vazir-Thin-FD-WOL.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 06272D7F7E9C4155B354B74C /* Vazir-Thin-FD-WOL.ttf */; };
+		3CBB1F21548C4721B28BD6F4 /* Vazir-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 02392F2D42E44E5AB54990D1 /* Vazir-Bold.ttf */; };
+		E96CEF76B0304110B5FF5C37 /* Vazir-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 74C7DCD12B304674A17E2135 /* Vazir-Light.ttf */; };
+		28D270E5B4C64538B2E3ACC0 /* Vazir-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0EB097E7AE00434C97F95287 /* Vazir-Medium.ttf */; };
+		0B714912D2AA43D6B4B1584C /* Vazir-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B6F4FF553C6E4E44A6C1940C /* Vazir-Thin.ttf */; };
+		A00714577E4944A4A0DD72AB /* Vazir.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5F5A80617E6C4CF785A79E2B /* Vazir.ttf */; };
+		EEA85F182BBC400D893C7FD0 /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = FD7A64BF19B140C7A71A1430 /* CHANGELOG.md */; };
+		EF403AD8FA204E48BB43F98D /* Vazir-Bold-FD-WOL.eot in Resources */ = {isa = PBXBuildFile; fileRef = 3F1E73655FCF466F9BAC4B6C /* Vazir-Bold-FD-WOL.eot */; };
+		C855241D706A49BAB939CDF4 /* Vazir-Bold-FD-WOL.woff in Resources */ = {isa = PBXBuildFile; fileRef = 9DD030B3C757452090210D68 /* Vazir-Bold-FD-WOL.woff */; };
+		D69B86C93D46411E987E931F /* Vazir-Bold-FD-WOL.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = BC69629960AA4E169CA45532 /* Vazir-Bold-FD-WOL.woff2 */; };
+		B7FEFBCAFB9E44A1A434DCA3 /* Vazir-FD-WOL.eot in Resources */ = {isa = PBXBuildFile; fileRef = 86DEEE172BEE4E2AAC32AA29 /* Vazir-FD-WOL.eot */; };
+		2DCB816290A942959D10B508 /* Vazir-FD-WOL.woff in Resources */ = {isa = PBXBuildFile; fileRef = 3DBCA31C6D5A405A83C22A13 /* Vazir-FD-WOL.woff */; };
+		3D4B6FDAFD634CBCA70533A1 /* Vazir-FD-WOL.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = FAD5FD8876D84CE1A90E73AB /* Vazir-FD-WOL.woff2 */; };
+		FBA33EC3862746B59D6C65DC /* Vazir-Light-FD-WOL.eot in Resources */ = {isa = PBXBuildFile; fileRef = FE023175E1A44113A8F2543D /* Vazir-Light-FD-WOL.eot */; };
+		F5D3EAEC25B249669EE09E5C /* Vazir-Light-FD-WOL.woff in Resources */ = {isa = PBXBuildFile; fileRef = 819E9AFC5D1A4353A134700C /* Vazir-Light-FD-WOL.woff */; };
+		D664E4B2768640DD8695DEE1 /* Vazir-Light-FD-WOL.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = 0F68629FE94F482ABDA07B46 /* Vazir-Light-FD-WOL.woff2 */; };
+		C95A948B3BD9446C960F86EF /* Vazir-Medium-FD-WOL.eot in Resources */ = {isa = PBXBuildFile; fileRef = 21011FF3A52E4B0CA7FB188F /* Vazir-Medium-FD-WOL.eot */; };
+		4835CE4FCEA647FC91325076 /* Vazir-Medium-FD-WOL.woff in Resources */ = {isa = PBXBuildFile; fileRef = 5FACD5D5CE8E4222BBCEC5B1 /* Vazir-Medium-FD-WOL.woff */; };
+		4586F1BBE74C4C229C79B9D6 /* Vazir-Medium-FD-WOL.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = 8FDC50FE4AEE4B7E95640A0D /* Vazir-Medium-FD-WOL.woff2 */; };
+		B3EE0C47E47B4AB3AD0F19BC /* Vazir-Thin-FD-WOL.eot in Resources */ = {isa = PBXBuildFile; fileRef = 2DA7F5F947924473AF3DD645 /* Vazir-Thin-FD-WOL.eot */; };
+		6E0B57440EEF40F7919372A6 /* Vazir-Thin-FD-WOL.woff in Resources */ = {isa = PBXBuildFile; fileRef = 91BA6C0F8D3649C98B7145A9 /* Vazir-Thin-FD-WOL.woff */; };
+		A66C1CEAFADD4C19ACEB66FA /* Vazir-Thin-FD-WOL.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = 679FD3D4746A452D825EA256 /* Vazir-Thin-FD-WOL.woff2 */; };
+		522FBF92CE4D4E65A39FC6C6 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 32CBFB036BE542F3A5970C0B /* LICENSE */; };
+		23BD8771C1FC44B3A24599DC /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 5BF088C3FB4C486E97BBDF9F /* README.md */; };
+		9C0D878F522F44098FF12FEF /* Vazir-Bold.eot in Resources */ = {isa = PBXBuildFile; fileRef = 74DFF921461A432F9A405786 /* Vazir-Bold.eot */; };
+		AA68D34B1D09408B99068C21 /* Vazir-Bold.woff in Resources */ = {isa = PBXBuildFile; fileRef = 92196CF936B743FEA80EDB05 /* Vazir-Bold.woff */; };
+		EF9E767593F94BE08C1A5AE6 /* Vazir-Bold.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = F4157EAB4E2D4EA08A1A4062 /* Vazir-Bold.woff2 */; };
+		7290C308EA9F4EBD86ABDBC0 /* Vazir-Light.eot in Resources */ = {isa = PBXBuildFile; fileRef = 72D1B63F0EC746E58D355296 /* Vazir-Light.eot */; };
+		3EF703DD20434BE4AC1A9C94 /* Vazir-Light.woff in Resources */ = {isa = PBXBuildFile; fileRef = 5244879458D54B40B7CD2AB3 /* Vazir-Light.woff */; };
+		7AC7E80496B24625AF4D13D4 /* Vazir-Light.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = 9C05270EB5454A3780EFC731 /* Vazir-Light.woff2 */; };
+		278E6A11962B4C8E8907548D /* Vazir-Medium.eot in Resources */ = {isa = PBXBuildFile; fileRef = BC2C32B86CE94E6383C9AD14 /* Vazir-Medium.eot */; };
+		EF49A7E8EB8A40E1B074B8A6 /* Vazir-Medium.woff in Resources */ = {isa = PBXBuildFile; fileRef = B03911483B3F49B2BD89277E /* Vazir-Medium.woff */; };
+		9A36F274767A42CAB53C7A00 /* Vazir-Medium.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = FCA827BE0A734D78AC1D1F75 /* Vazir-Medium.woff2 */; };
+		CA5DBBC82C954051BCBA5453 /* Vazir-Thin.eot in Resources */ = {isa = PBXBuildFile; fileRef = DEAFA87A33FD4EAE9B8DE788 /* Vazir-Thin.eot */; };
+		C658122944814B7999F43AF5 /* Vazir-Thin.woff in Resources */ = {isa = PBXBuildFile; fileRef = FF822303B68D4423B3709EBA /* Vazir-Thin.woff */; };
+		2C6FB9C06E6D4BB5A60F2776 /* Vazir-Thin.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = 2680387DFDF544518B289339 /* Vazir-Thin.woff2 */; };
+		4D524581CFE84A63873D583C /* Vazir.eot in Resources */ = {isa = PBXBuildFile; fileRef = E146BF03D4F049D1BF63ACE4 /* Vazir.eot */; };
+		7FF5430C7F754D6FA5EE84CA /* Vazir.woff in Resources */ = {isa = PBXBuildFile; fileRef = F36CA44FF8474F058461188B /* Vazir.woff */; };
+		7A923B13C85A4CAE8731DF2A /* Vazir.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = 964DCF3316AB4F1C919E587B /* Vazir.woff2 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +88,49 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = BeautyApp/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-BeautyApp-BeautyAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeautyApp-BeautyAppTests.release.xcconfig"; path = "Target Support Files/Pods-BeautyApp-BeautyAppTests/Pods-BeautyApp-BeautyAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		B3605057A995412BB972493E /* Vazir-Bold-FD-WOL.ttf */ = {isa = PBXFileReference; name = "Vazir-Bold-FD-WOL.ttf"; path = "../src/assets/fonts/vazir-font-v16.1.0/Farsi-Digits-Without-Latin/Vazir-Bold-FD-WOL.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		2B2422AA82B04828AF0DA625 /* Vazir-FD-WOL.ttf */ = {isa = PBXFileReference; name = "Vazir-FD-WOL.ttf"; path = "../src/assets/fonts/vazir-font-v16.1.0/Farsi-Digits-Without-Latin/Vazir-FD-WOL.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		A29A04EB6C3C45019EE60AC3 /* Vazir-Light-FD-WOL.ttf */ = {isa = PBXFileReference; name = "Vazir-Light-FD-WOL.ttf"; path = "../src/assets/fonts/vazir-font-v16.1.0/Farsi-Digits-Without-Latin/Vazir-Light-FD-WOL.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		31E1BC74998644D3BAC73ACF /* Vazir-Medium-FD-WOL.ttf */ = {isa = PBXFileReference; name = "Vazir-Medium-FD-WOL.ttf"; path = "../src/assets/fonts/vazir-font-v16.1.0/Farsi-Digits-Without-Latin/Vazir-Medium-FD-WOL.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		06272D7F7E9C4155B354B74C /* Vazir-Thin-FD-WOL.ttf */ = {isa = PBXFileReference; name = "Vazir-Thin-FD-WOL.ttf"; path = "../src/assets/fonts/vazir-font-v16.1.0/Farsi-Digits-Without-Latin/Vazir-Thin-FD-WOL.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		02392F2D42E44E5AB54990D1 /* Vazir-Bold.ttf */ = {isa = PBXFileReference; name = "Vazir-Bold.ttf"; path = "../src/assets/fonts/vazir-font-v16.1.0/Vazir-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		74C7DCD12B304674A17E2135 /* Vazir-Light.ttf */ = {isa = PBXFileReference; name = "Vazir-Light.ttf"; path = "../src/assets/fonts/vazir-font-v16.1.0/Vazir-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		0EB097E7AE00434C97F95287 /* Vazir-Medium.ttf */ = {isa = PBXFileReference; name = "Vazir-Medium.ttf"; path = "../src/assets/fonts/vazir-font-v16.1.0/Vazir-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		B6F4FF553C6E4E44A6C1940C /* Vazir-Thin.ttf */ = {isa = PBXFileReference; name = "Vazir-Thin.ttf"; path = "../src/assets/fonts/vazir-font-v16.1.0/Vazir-Thin.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		5F5A80617E6C4CF785A79E2B /* Vazir.ttf */ = {isa = PBXFileReference; name = "Vazir.ttf"; path = "../src/assets/fonts/vazir-font-v16.1.0/Vazir.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		FD7A64BF19B140C7A71A1430 /* CHANGELOG.md */ = {isa = PBXFileReference; name = "CHANGELOG.md"; path = "../src/assets/fonts/vazir-font-v16.1.0/CHANGELOG.md"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		3F1E73655FCF466F9BAC4B6C /* Vazir-Bold-FD-WOL.eot */ = {isa = PBXFileReference; name = "Vazir-Bold-FD-WOL.eot"; path = "../src/assets/fonts/vazir-font-v16.1.0/Farsi-Digits-Without-Latin/Vazir-Bold-FD-WOL.eot"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		9DD030B3C757452090210D68 /* Vazir-Bold-FD-WOL.woff */ = {isa = PBXFileReference; name = "Vazir-Bold-FD-WOL.woff"; path = "../src/assets/fonts/vazir-font-v16.1.0/Farsi-Digits-Without-Latin/Vazir-Bold-FD-WOL.woff"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		BC69629960AA4E169CA45532 /* Vazir-Bold-FD-WOL.woff2 */ = {isa = PBXFileReference; name = "Vazir-Bold-FD-WOL.woff2"; path = "../src/assets/fonts/vazir-font-v16.1.0/Farsi-Digits-Without-Latin/Vazir-Bold-FD-WOL.woff2"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		86DEEE172BEE4E2AAC32AA29 /* Vazir-FD-WOL.eot */ = {isa = PBXFileReference; name = "Vazir-FD-WOL.eot"; path = "../src/assets/fonts/vazir-font-v16.1.0/Farsi-Digits-Without-Latin/Vazir-FD-WOL.eot"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		3DBCA31C6D5A405A83C22A13 /* Vazir-FD-WOL.woff */ = {isa = PBXFileReference; name = "Vazir-FD-WOL.woff"; path = "../src/assets/fonts/vazir-font-v16.1.0/Farsi-Digits-Without-Latin/Vazir-FD-WOL.woff"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		FAD5FD8876D84CE1A90E73AB /* Vazir-FD-WOL.woff2 */ = {isa = PBXFileReference; name = "Vazir-FD-WOL.woff2"; path = "../src/assets/fonts/vazir-font-v16.1.0/Farsi-Digits-Without-Latin/Vazir-FD-WOL.woff2"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		FE023175E1A44113A8F2543D /* Vazir-Light-FD-WOL.eot */ = {isa = PBXFileReference; name = "Vazir-Light-FD-WOL.eot"; path = "../src/assets/fonts/vazir-font-v16.1.0/Farsi-Digits-Without-Latin/Vazir-Light-FD-WOL.eot"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		819E9AFC5D1A4353A134700C /* Vazir-Light-FD-WOL.woff */ = {isa = PBXFileReference; name = "Vazir-Light-FD-WOL.woff"; path = "../src/assets/fonts/vazir-font-v16.1.0/Farsi-Digits-Without-Latin/Vazir-Light-FD-WOL.woff"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		0F68629FE94F482ABDA07B46 /* Vazir-Light-FD-WOL.woff2 */ = {isa = PBXFileReference; name = "Vazir-Light-FD-WOL.woff2"; path = "../src/assets/fonts/vazir-font-v16.1.0/Farsi-Digits-Without-Latin/Vazir-Light-FD-WOL.woff2"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		21011FF3A52E4B0CA7FB188F /* Vazir-Medium-FD-WOL.eot */ = {isa = PBXFileReference; name = "Vazir-Medium-FD-WOL.eot"; path = "../src/assets/fonts/vazir-font-v16.1.0/Farsi-Digits-Without-Latin/Vazir-Medium-FD-WOL.eot"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		5FACD5D5CE8E4222BBCEC5B1 /* Vazir-Medium-FD-WOL.woff */ = {isa = PBXFileReference; name = "Vazir-Medium-FD-WOL.woff"; path = "../src/assets/fonts/vazir-font-v16.1.0/Farsi-Digits-Without-Latin/Vazir-Medium-FD-WOL.woff"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		8FDC50FE4AEE4B7E95640A0D /* Vazir-Medium-FD-WOL.woff2 */ = {isa = PBXFileReference; name = "Vazir-Medium-FD-WOL.woff2"; path = "../src/assets/fonts/vazir-font-v16.1.0/Farsi-Digits-Without-Latin/Vazir-Medium-FD-WOL.woff2"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		2DA7F5F947924473AF3DD645 /* Vazir-Thin-FD-WOL.eot */ = {isa = PBXFileReference; name = "Vazir-Thin-FD-WOL.eot"; path = "../src/assets/fonts/vazir-font-v16.1.0/Farsi-Digits-Without-Latin/Vazir-Thin-FD-WOL.eot"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		91BA6C0F8D3649C98B7145A9 /* Vazir-Thin-FD-WOL.woff */ = {isa = PBXFileReference; name = "Vazir-Thin-FD-WOL.woff"; path = "../src/assets/fonts/vazir-font-v16.1.0/Farsi-Digits-Without-Latin/Vazir-Thin-FD-WOL.woff"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		679FD3D4746A452D825EA256 /* Vazir-Thin-FD-WOL.woff2 */ = {isa = PBXFileReference; name = "Vazir-Thin-FD-WOL.woff2"; path = "../src/assets/fonts/vazir-font-v16.1.0/Farsi-Digits-Without-Latin/Vazir-Thin-FD-WOL.woff2"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		32CBFB036BE542F3A5970C0B /* LICENSE */ = {isa = PBXFileReference; name = "LICENSE"; path = "../src/assets/fonts/vazir-font-v16.1.0/LICENSE"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		5BF088C3FB4C486E97BBDF9F /* README.md */ = {isa = PBXFileReference; name = "README.md"; path = "../src/assets/fonts/vazir-font-v16.1.0/README.md"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		74DFF921461A432F9A405786 /* Vazir-Bold.eot */ = {isa = PBXFileReference; name = "Vazir-Bold.eot"; path = "../src/assets/fonts/vazir-font-v16.1.0/Vazir-Bold.eot"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		92196CF936B743FEA80EDB05 /* Vazir-Bold.woff */ = {isa = PBXFileReference; name = "Vazir-Bold.woff"; path = "../src/assets/fonts/vazir-font-v16.1.0/Vazir-Bold.woff"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F4157EAB4E2D4EA08A1A4062 /* Vazir-Bold.woff2 */ = {isa = PBXFileReference; name = "Vazir-Bold.woff2"; path = "../src/assets/fonts/vazir-font-v16.1.0/Vazir-Bold.woff2"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		72D1B63F0EC746E58D355296 /* Vazir-Light.eot */ = {isa = PBXFileReference; name = "Vazir-Light.eot"; path = "../src/assets/fonts/vazir-font-v16.1.0/Vazir-Light.eot"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		5244879458D54B40B7CD2AB3 /* Vazir-Light.woff */ = {isa = PBXFileReference; name = "Vazir-Light.woff"; path = "../src/assets/fonts/vazir-font-v16.1.0/Vazir-Light.woff"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		9C05270EB5454A3780EFC731 /* Vazir-Light.woff2 */ = {isa = PBXFileReference; name = "Vazir-Light.woff2"; path = "../src/assets/fonts/vazir-font-v16.1.0/Vazir-Light.woff2"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		BC2C32B86CE94E6383C9AD14 /* Vazir-Medium.eot */ = {isa = PBXFileReference; name = "Vazir-Medium.eot"; path = "../src/assets/fonts/vazir-font-v16.1.0/Vazir-Medium.eot"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		B03911483B3F49B2BD89277E /* Vazir-Medium.woff */ = {isa = PBXFileReference; name = "Vazir-Medium.woff"; path = "../src/assets/fonts/vazir-font-v16.1.0/Vazir-Medium.woff"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		FCA827BE0A734D78AC1D1F75 /* Vazir-Medium.woff2 */ = {isa = PBXFileReference; name = "Vazir-Medium.woff2"; path = "../src/assets/fonts/vazir-font-v16.1.0/Vazir-Medium.woff2"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		DEAFA87A33FD4EAE9B8DE788 /* Vazir-Thin.eot */ = {isa = PBXFileReference; name = "Vazir-Thin.eot"; path = "../src/assets/fonts/vazir-font-v16.1.0/Vazir-Thin.eot"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		FF822303B68D4423B3709EBA /* Vazir-Thin.woff */ = {isa = PBXFileReference; name = "Vazir-Thin.woff"; path = "../src/assets/fonts/vazir-font-v16.1.0/Vazir-Thin.woff"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		2680387DFDF544518B289339 /* Vazir-Thin.woff2 */ = {isa = PBXFileReference; name = "Vazir-Thin.woff2"; path = "../src/assets/fonts/vazir-font-v16.1.0/Vazir-Thin.woff2"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		E146BF03D4F049D1BF63ACE4 /* Vazir.eot */ = {isa = PBXFileReference; name = "Vazir.eot"; path = "../src/assets/fonts/vazir-font-v16.1.0/Vazir.eot"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F36CA44FF8474F058461188B /* Vazir.woff */ = {isa = PBXFileReference; name = "Vazir.woff"; path = "../src/assets/fonts/vazir-font-v16.1.0/Vazir.woff"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		964DCF3316AB4F1C919E587B /* Vazir.woff2 */ = {isa = PBXFileReference; name = "Vazir.woff2"; path = "../src/assets/fonts/vazir-font-v16.1.0/Vazir.woff2"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +210,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				800838424A5445069643E756 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -149,6 +236,57 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
+		};
+		800838424A5445069643E756 /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				B3605057A995412BB972493E /* Vazir-Bold-FD-WOL.ttf */,
+				2B2422AA82B04828AF0DA625 /* Vazir-FD-WOL.ttf */,
+				A29A04EB6C3C45019EE60AC3 /* Vazir-Light-FD-WOL.ttf */,
+				31E1BC74998644D3BAC73ACF /* Vazir-Medium-FD-WOL.ttf */,
+				06272D7F7E9C4155B354B74C /* Vazir-Thin-FD-WOL.ttf */,
+				02392F2D42E44E5AB54990D1 /* Vazir-Bold.ttf */,
+				74C7DCD12B304674A17E2135 /* Vazir-Light.ttf */,
+				0EB097E7AE00434C97F95287 /* Vazir-Medium.ttf */,
+				B6F4FF553C6E4E44A6C1940C /* Vazir-Thin.ttf */,
+				5F5A80617E6C4CF785A79E2B /* Vazir.ttf */,
+				FD7A64BF19B140C7A71A1430 /* CHANGELOG.md */,
+				3F1E73655FCF466F9BAC4B6C /* Vazir-Bold-FD-WOL.eot */,
+				9DD030B3C757452090210D68 /* Vazir-Bold-FD-WOL.woff */,
+				BC69629960AA4E169CA45532 /* Vazir-Bold-FD-WOL.woff2 */,
+				86DEEE172BEE4E2AAC32AA29 /* Vazir-FD-WOL.eot */,
+				3DBCA31C6D5A405A83C22A13 /* Vazir-FD-WOL.woff */,
+				FAD5FD8876D84CE1A90E73AB /* Vazir-FD-WOL.woff2 */,
+				FE023175E1A44113A8F2543D /* Vazir-Light-FD-WOL.eot */,
+				819E9AFC5D1A4353A134700C /* Vazir-Light-FD-WOL.woff */,
+				0F68629FE94F482ABDA07B46 /* Vazir-Light-FD-WOL.woff2 */,
+				21011FF3A52E4B0CA7FB188F /* Vazir-Medium-FD-WOL.eot */,
+				5FACD5D5CE8E4222BBCEC5B1 /* Vazir-Medium-FD-WOL.woff */,
+				8FDC50FE4AEE4B7E95640A0D /* Vazir-Medium-FD-WOL.woff2 */,
+				2DA7F5F947924473AF3DD645 /* Vazir-Thin-FD-WOL.eot */,
+				91BA6C0F8D3649C98B7145A9 /* Vazir-Thin-FD-WOL.woff */,
+				679FD3D4746A452D825EA256 /* Vazir-Thin-FD-WOL.woff2 */,
+				32CBFB036BE542F3A5970C0B /* LICENSE */,
+				5BF088C3FB4C486E97BBDF9F /* README.md */,
+				74DFF921461A432F9A405786 /* Vazir-Bold.eot */,
+				92196CF936B743FEA80EDB05 /* Vazir-Bold.woff */,
+				F4157EAB4E2D4EA08A1A4062 /* Vazir-Bold.woff2 */,
+				72D1B63F0EC746E58D355296 /* Vazir-Light.eot */,
+				5244879458D54B40B7CD2AB3 /* Vazir-Light.woff */,
+				9C05270EB5454A3780EFC731 /* Vazir-Light.woff2 */,
+				BC2C32B86CE94E6383C9AD14 /* Vazir-Medium.eot */,
+				B03911483B3F49B2BD89277E /* Vazir-Medium.woff */,
+				FCA827BE0A734D78AC1D1F75 /* Vazir-Medium.woff2 */,
+				DEAFA87A33FD4EAE9B8DE788 /* Vazir-Thin.eot */,
+				FF822303B68D4423B3709EBA /* Vazir-Thin.woff */,
+				2680387DFDF544518B289339 /* Vazir-Thin.woff2 */,
+				E146BF03D4F049D1BF63ACE4 /* Vazir.eot */,
+				F36CA44FF8474F058461188B /* Vazir.woff */,
+				964DCF3316AB4F1C919E587B /* Vazir.woff2 */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -245,6 +383,49 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				B36B4186473E4C2FBD620BBB /* Vazir-Bold-FD-WOL.ttf in Resources */,
+				ADA3F299DFAC462F93B3BAC1 /* Vazir-FD-WOL.ttf in Resources */,
+				FF89CB9436E343A79927FEE4 /* Vazir-Light-FD-WOL.ttf in Resources */,
+				FA485BD4D12A44A386B23252 /* Vazir-Medium-FD-WOL.ttf in Resources */,
+				69CA5F1529DC499EA832150E /* Vazir-Thin-FD-WOL.ttf in Resources */,
+				3CBB1F21548C4721B28BD6F4 /* Vazir-Bold.ttf in Resources */,
+				E96CEF76B0304110B5FF5C37 /* Vazir-Light.ttf in Resources */,
+				28D270E5B4C64538B2E3ACC0 /* Vazir-Medium.ttf in Resources */,
+				0B714912D2AA43D6B4B1584C /* Vazir-Thin.ttf in Resources */,
+				A00714577E4944A4A0DD72AB /* Vazir.ttf in Resources */,
+				EEA85F182BBC400D893C7FD0 /* CHANGELOG.md in Resources */,
+				EF403AD8FA204E48BB43F98D /* Vazir-Bold-FD-WOL.eot in Resources */,
+				C855241D706A49BAB939CDF4 /* Vazir-Bold-FD-WOL.woff in Resources */,
+				D69B86C93D46411E987E931F /* Vazir-Bold-FD-WOL.woff2 in Resources */,
+				B7FEFBCAFB9E44A1A434DCA3 /* Vazir-FD-WOL.eot in Resources */,
+				2DCB816290A942959D10B508 /* Vazir-FD-WOL.woff in Resources */,
+				3D4B6FDAFD634CBCA70533A1 /* Vazir-FD-WOL.woff2 in Resources */,
+				FBA33EC3862746B59D6C65DC /* Vazir-Light-FD-WOL.eot in Resources */,
+				F5D3EAEC25B249669EE09E5C /* Vazir-Light-FD-WOL.woff in Resources */,
+				D664E4B2768640DD8695DEE1 /* Vazir-Light-FD-WOL.woff2 in Resources */,
+				C95A948B3BD9446C960F86EF /* Vazir-Medium-FD-WOL.eot in Resources */,
+				4835CE4FCEA647FC91325076 /* Vazir-Medium-FD-WOL.woff in Resources */,
+				4586F1BBE74C4C229C79B9D6 /* Vazir-Medium-FD-WOL.woff2 in Resources */,
+				B3EE0C47E47B4AB3AD0F19BC /* Vazir-Thin-FD-WOL.eot in Resources */,
+				6E0B57440EEF40F7919372A6 /* Vazir-Thin-FD-WOL.woff in Resources */,
+				A66C1CEAFADD4C19ACEB66FA /* Vazir-Thin-FD-WOL.woff2 in Resources */,
+				522FBF92CE4D4E65A39FC6C6 /* LICENSE in Resources */,
+				23BD8771C1FC44B3A24599DC /* README.md in Resources */,
+				9C0D878F522F44098FF12FEF /* Vazir-Bold.eot in Resources */,
+				AA68D34B1D09408B99068C21 /* Vazir-Bold.woff in Resources */,
+				EF9E767593F94BE08C1A5AE6 /* Vazir-Bold.woff2 in Resources */,
+				7290C308EA9F4EBD86ABDBC0 /* Vazir-Light.eot in Resources */,
+				3EF703DD20434BE4AC1A9C94 /* Vazir-Light.woff in Resources */,
+				7AC7E80496B24625AF4D13D4 /* Vazir-Light.woff2 in Resources */,
+				278E6A11962B4C8E8907548D /* Vazir-Medium.eot in Resources */,
+				EF49A7E8EB8A40E1B074B8A6 /* Vazir-Medium.woff in Resources */,
+				9A36F274767A42CAB53C7A00 /* Vazir-Medium.woff2 in Resources */,
+				CA5DBBC82C954051BCBA5453 /* Vazir-Thin.eot in Resources */,
+				C658122944814B7999F43AF5 /* Vazir-Thin.woff in Resources */,
+				2C6FB9C06E6D4BB5A60F2776 /* Vazir-Thin.woff2 in Resources */,
+				4D524581CFE84A63873D583C /* Vazir.eot in Resources */,
+				7FF5430C7F754D6FA5EE84CA /* Vazir.woff in Resources */,
+				7A923B13C85A4CAE8731DF2A /* Vazir.woff2 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
