@@ -57,6 +57,8 @@
 		4D524581CFE84A63873D583C /* Vazir.eot in Resources */ = {isa = PBXBuildFile; fileRef = E146BF03D4F049D1BF63ACE4 /* Vazir.eot */; };
 		7FF5430C7F754D6FA5EE84CA /* Vazir.woff in Resources */ = {isa = PBXBuildFile; fileRef = F36CA44FF8474F058461188B /* Vazir.woff */; };
 		7A923B13C85A4CAE8731DF2A /* Vazir.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = 964DCF3316AB4F1C919E587B /* Vazir.woff2 */; };
+		CD54E33D22BE434E85DD6B2E /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DBD331BD9234152ABC3D4E2 /* BootSplash.storyboard */; };
+		7F4FE9CA877A43E9A275FA8B /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DB14DBE9CB9436383C49747 /* Colors.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,6 +133,8 @@
 		E146BF03D4F049D1BF63ACE4 /* Vazir.eot */ = {isa = PBXFileReference; name = "Vazir.eot"; path = "../src/assets/fonts/vazir-font-v16.1.0/Vazir.eot"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		F36CA44FF8474F058461188B /* Vazir.woff */ = {isa = PBXFileReference; name = "Vazir.woff"; path = "../src/assets/fonts/vazir-font-v16.1.0/Vazir.woff"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		964DCF3316AB4F1C919E587B /* Vazir.woff2 */ = {isa = PBXFileReference; name = "Vazir.woff2"; path = "../src/assets/fonts/vazir-font-v16.1.0/Vazir.woff2"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		4DBD331BD9234152ABC3D4E2 /* BootSplash.storyboard */ = {isa = PBXFileReference; name = "BootSplash.storyboard"; path = "BeautyApp/BootSplash.storyboard"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		3DB14DBE9CB9436383C49747 /* Colors.xcassets */ = {isa = PBXFileReference; name = "Colors.xcassets"; path = "BeautyApp/Colors.xcassets"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = folder.assetcatalog; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,6 +184,8 @@
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
 				13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */,
+				4DBD331BD9234152ABC3D4E2 /* BootSplash.storyboard */,
+				3DB14DBE9CB9436383C49747 /* Colors.xcassets */,
 			);
 			name = BeautyApp;
 			sourceTree = "<group>";
@@ -426,6 +432,8 @@
 				4D524581CFE84A63873D583C /* Vazir.eot in Resources */,
 				7FF5430C7F754D6FA5EE84CA /* Vazir.woff in Resources */,
 				7A923B13C85A4CAE8731DF2A /* Vazir.woff2 in Resources */,
+				CD54E33D22BE434E85DD6B2E /* BootSplash.storyboard in Resources */,
+				7F4FE9CA877A43E9A275FA8B /* Colors.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
