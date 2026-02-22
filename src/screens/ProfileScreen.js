@@ -87,7 +87,7 @@ const ProfileScreen = () => {
             <Text style={styles.bioTitle}>توضیحات مدل</Text>
             <Text style={styles.bioText}>
               با فعال کردن این امکان میتوانید با دریافت ناتیفیکیشن یا پیام متنی
-              از سمت برنامه از خدمات رایگان و پرتخیفف کسب و کار های نیازمند به مدل جهت نشان دادن نمونه کار های خود بهرمند شوید.{' '}
+              از سمت کسبو کار هایی که نیاز به مدل دارند از خدمات رایگان و پرتخیفف بهرمند شوید.{' '}
             </Text>
           </View>
         </View>
@@ -140,6 +140,17 @@ const ProfileScreen = () => {
         <View style={styles.appointmentsContainer}>
           {APPOINTMENTS.map(item => (
             <View key={item.id} style={styles.appointmentCard}>
+              {/* دکمه لغو نوبت جدید */}
+              <TouchableOpacity
+                style={styles.cancelBtn}
+                onPress={() => console.log('Cancel appointment', item.id)}>
+                <Text style={styles.cancelBtnText}>لغو نوبت</Text>
+                <Icon
+                  name="close-circle-outline"
+                  size={14}
+                  color={COLORS.redButton}
+                />
+              </TouchableOpacity>
               <View style={styles.appointmentDetails}>
                 <Text style={styles.appointmentProvider}>{item.provider}</Text>
                 <Text style={styles.appointmentSubtitle}>{item.subtitle}</Text>
@@ -167,18 +178,17 @@ const ProfileScreen = () => {
             </View>
           ))}
         </View>
+        {/* --- دکمه قرمز شناور پایین صفحه --- */}
+        <TouchableOpacity style={styles.floatingRedButton}>
+          <Icon
+            name="arrow-back-outline"
+            size={20}
+            color="#FFF"
+            style={{ marginLeft: 10 }}
+          />
+          <Text style={styles.floatingRedButtonText}>خروج از حساب کاربری</Text>
+        </TouchableOpacity>
       </ScrollView>
-
-      {/* --- دکمه قرمز شناور پایین صفحه --- */}
-      <TouchableOpacity style={styles.floatingRedButton}>
-        <Text style={styles.floatingRedButtonText}>خروج از حساب کاربری</Text>
-        <Icon
-          name="arrow-back-outline"
-          size={20}
-          color="#FFF"
-          style={{ marginLeft: 10 }}
-        />
-      </TouchableOpacity>
     </SafeAreaView>
   );
 };
@@ -402,27 +412,47 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   floatingRedButton: {
-    position: 'absolute',
-    bottom: 80, // بالاتر از منوی تب پایین
+    position: 'relative', // حالا دکمه با اسکرول حرکت می‌کند
+    marginTop: 40, // فاصله از آخرین کارت نوبت
+    marginBottom: 20, // فاصله احتیاطی از پایین‌ترین نقطه محتوا
     alignSelf: 'center',
     backgroundColor: COLORS.redButton,
-    flexDirection: 'row',
+    flexDirection: 'row-reverse',
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: 12,
     paddingHorizontal: 30,
     borderRadius: 25,
-    shadowColor: COLORS.redButton,
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.4,
-    shadowRadius: 8,
-    elevation: 6,
+    elevation: 4,
   },
   floatingRedButtonText: {
     color: '#FFF',
     fontSize: 15,
     fontWeight: 'bold',
     fontFamily: 'vazir',
+  },
+  cancelBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 12,
+    alignSelf: 'flex-start', // قرار گرفتن در سمت چپِ باکس (چون کل کانتینر راست‌چین است)
+    paddingVertical: 4,
+    paddingHorizontal: 8,
+    borderRadius: 6,
+    borderWidth: 1,
+    borderColor: 'rgba(229, 57, 53, 0.3)', // قرمز با شفافیت کم برای دورخط
+    backgroundColor: 'rgba(229, 57, 53, 0.05)', // پس‌زمینه خیلی ملایم قرمز
+  },
+  cancelBtnText: {
+    color: COLORS.redButton,
+    fontSize: 11,
+    fontFamily: 'vazir',
+    marginRight: 5,
+  },
+  topRow: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    width: '100%',
   },
 });
 
