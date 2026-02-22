@@ -52,15 +52,6 @@ const LoginScreen = ({ navigation }) => {
       }
     }
   };
-
-  const handleLogin = () => {
-    // اینجا کدهای چک کردن رمز و ایمیل رو می‌نویسی...
-    // بعد از تایید موفقیت‌آمیز، کاربر رو می‌فرستیم به صفحه Explore
-    
-    // نکته مهم: از replace استفاده می‌کنیم تا کاربر نتواند با دکمه "Back" گوشی 
-    // دوباره برگردد به صفحه لاگین!
-    navigation.replace('Explore'); 
-  };
   return (
     <KeyboardAvoidingView 
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
