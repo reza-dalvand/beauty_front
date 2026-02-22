@@ -2,7 +2,6 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-// صفحاتت رو اینجا ایمپورت کن (فعلاً فرض می‌کنیم داریشون)
 import ExploreScreen from '../screens/ExploreScreen';
 import HomeScreen from '../screens/HomeScreen';
 import CreatePostScreen from '../screens/CreatePostScreen';

@@ -26,8 +26,8 @@ const CATEGORIES = ['پاکسازی', 'لیزر', 'مو', 'ناخن', 'همه'];
 
 const SERVICES_DATA = Array.from({ length: 20 }).map((_, i) => ({
   id: i.toString(),
-  title: `Service ${i + 1}`,
-  subtitle: 'Description text',
+  title: `پروتتین مو`,
+  subtitle: '',
   image: `https://i.pravatar.cc/300?img=${i + 20}`,
 }));
 
@@ -39,24 +39,28 @@ const Header = ({ navigation }) => (
 );
 
 // ================= SEARCH =================
-const SearchBox = () => (
-  <View style={localStyles.sectionContainer}>
-    <View style={localStyles.searchBar}>
-      <Icon
-        name="search-outline"
-        size={20}
-        color={LOCAL_COLORS.textSecondary}
-        style={{ marginRight: 10 }}
-      />
-      <TextInput
-        style={localStyles.searchInput}
-        placeholder="جستجو..."
-        placeholderTextColor={LOCAL_COLORS.textSecondary}
-      />
+const SearchBox = () => {
+  const [isFocused, setIsFocused] = React.useState(false);
+  return (
+    <View style={localStyles.sectionContainer}>
+      <View style={[localStyles.searchBar, isFocused && localStyles.searchBarFocused]}>
+        <Icon
+          name="search-outline"
+          size={20}
+          color={LOCAL_COLORS.textSecondary}
+          style={{ marginRight: 10 }}
+        />
+        <TextInput
+          style={localStyles.searchInput}
+          placeholder="جستجو..."
+          placeholderTextColor={LOCAL_COLORS.textSecondary}
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
+        />
+      </View>
     </View>
-  </View>
-);
-
+  );
+};
 // ================= CATEGORY =================
 const CategoryTabs = ({ selectedCat, setSelectedCat }) => (
   <View style={localStyles.sectionContainer}>
@@ -65,7 +69,7 @@ const CategoryTabs = ({ selectedCat, setSelectedCat }) => (
       horizontal
       inverted
       showsHorizontalScrollIndicator={false}
-      keyExtractor={(item) => item}
+      keyExtractor={item => item}
       renderItem={({ item }) => {
         const isSelected = selectedCat === item;
         return (
@@ -74,14 +78,12 @@ const CategoryTabs = ({ selectedCat, setSelectedCat }) => (
               localStyles.categoryTab,
               isSelected && localStyles.categoryTabActive,
             ]}
-            onPress={() => setSelectedCat(item)}
-          >
+            onPress={() => setSelectedCat(item)}>
             <Text
               style={[
                 localStyles.categoryText,
                 isSelected && localStyles.categoryTextActive,
-              ]}
-            >
+              ]}>
               {item}
             </Text>
           </TouchableOpacity>
@@ -95,8 +97,7 @@ const CategoryTabs = ({ selectedCat, setSelectedCat }) => (
 const ServiceCard = ({ item, cardWidth }) => (
   <TouchableOpacity
     style={[localStyles.cardContainer, { width: cardWidth }]}
-    activeOpacity={0.8}
-  >
+    activeOpacity={0.8}>
     <Image
       source={{ uri: item.image }}
       style={[localStyles.cardImage, { width: cardWidth, height: cardWidth }]}
@@ -129,10 +130,7 @@ const HomeScreen = ({ navigation }) => {
     <>
       <Header navigation={navigation} />
       <SearchBox />
-      <CategoryTabs
-        selectedCat={selectedCat}
-        setSelectedCat={setSelectedCat}
-      />
+      <CategoryTabs selectedCat={selectedCat} setSelectedCat={setSelectedCat} />
     </>
   );
 
@@ -144,13 +142,12 @@ const HomeScreen = ({ navigation }) => {
           justifyContent: 'flex-start',
           paddingTop: StatusBar.currentHeight || 20,
         },
-      ]}
-    >
+      ]}>
       <StatusBar backgroundColor="#000" barStyle="light-content" />
 
       <FlatList
         data={SERVICES_DATA}
-        keyExtractor={(item) => item.id}
+        keyExtractor={item => item.id}
         numColumns={NUM_COLUMNS}
         columnWrapperStyle={{
           justifyContent: 'flex-start',
@@ -178,7 +175,7 @@ const localStyles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 15,
-    marginTop:3
+    marginTop: 3,
   },
   sectionContainer: {
     marginBottom: 20,
@@ -191,7 +188,10 @@ const localStyles = StyleSheet.create({
     paddingHorizontal: 15,
     height: 50,
     borderWidth: 1,
-    borderColor: LOCAL_COLORS.border,
+    borderColor: LOCAL_COLORS.titleText,
+  },
+  searchBarFocused: {
+    borderColor: LOCAL_COLORS.goldAccent,
   },
   searchInput: {
     flex: 1,
@@ -229,9 +229,9 @@ const localStyles = StyleSheet.create({
   },
   cardTitle: {
     color: '#FFFFFF',
-    fontSize: 11,
+    fontSize: 13,
     textAlign: 'center',
-    marginBottom: 2,
+    marginBottom: -5,
   },
   cardSubtitle: {
     color: LOCAL_COLORS.textSecondary,

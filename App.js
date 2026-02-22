@@ -11,17 +11,16 @@ import TabNavigator from './src/components/TabNavigator';
 const Stack = createStackNavigator();
 
 const App = () => {
-
   return (
     <GestureHandlerRootView style={globalStyles.container}>
       <SafeAreaProvider>
-          <NavigationContainer>
-            <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <NavigationContainer>
+          <Stack.Navigator screenOptions={{ headerShown: false }}>
             <Stack.Screen name="MainTabs" component={TabNavigator} />
             <Stack.Screen name="Explore" component={HomeScreen} />
             <Stack.Screen name="Login" component={LoginScreen} />
-        </Stack.Navigator>
-      </NavigationContainer>
+          </Stack.Navigator>
+        </NavigationContainer>
       </SafeAreaProvider>
     </GestureHandlerRootView>
   );
