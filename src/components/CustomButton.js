@@ -13,13 +13,13 @@ const CustomButton = ({ title, onPress, style }) => {
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: COLORS.primary,
+    backgroundColor: '#D4AF37',
     padding: 18,
     borderRadius: 15,
     alignItems: 'center',
     marginTop: 10,
     elevation: 10,
-    shadowColor: COLORS.primary,
+    shadowColor: '#D4AF37',
     shadowOpacity: 0.4,
     shadowRadius: 10,
   },

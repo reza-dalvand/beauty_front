@@ -1,7 +1,7 @@
 import React from 'react';
 import { Animated, Text, StyleSheet } from 'react-native';
 
-const FloatingAlert = ({ message, slideAnim }) => {
+const WarningFloatingAlert = ({ message, slideAnim }) => {
   if (!message) return null;
 
   return (
@@ -35,4 +35,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default FloatingAlert;
+export default WarningFloatingAlert;

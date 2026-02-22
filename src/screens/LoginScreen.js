@@ -4,8 +4,8 @@ import LottieView from 'lottie-react-native';
 import { globalStyles } from '../theme/globalStyles';
 import CustomInput from '../components/CustomInput';
 import CustomButton from '../components/CustomButton';
-import FloatingAlert from '../components/FloatingAlert';
-const LoginScreen = () => {
+import WarningFloatingAlert from '../components/FloatingAlert';
+const LoginScreen = ({ navigation }) => {
   const [step, setStep] = useState(1);
   const [phoneNumber, setPhoneNumber] = useState('');
   const [otpCode, setOtpCode] = useState('');
@@ -46,18 +46,27 @@ const LoginScreen = () => {
     } else {
       if (otpCode.length === 5) {
         console.log("ورود موفق");
+        navigation.replace('Explore'); 
       } else {
         showAlert('کد تایید باید ۵ رقم باشد 🔢');
       }
     }
   };
 
+  const handleLogin = () => {
+    // اینجا کدهای چک کردن رمز و ایمیل رو می‌نویسی...
+    // بعد از تایید موفقیت‌آمیز، کاربر رو می‌فرستیم به صفحه Explore
+    
+    // نکته مهم: از replace استفاده می‌کنیم تا کاربر نتواند با دکمه "Back" گوشی 
+    // دوباره برگردد به صفحه لاگین!
+    navigation.replace('Explore'); 
+  };
   return (
     <KeyboardAvoidingView 
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       style={globalStyles.container} 
     >
-      <FloatingAlert message={error} slideAnim={slideAnim} />
+      <WarningFloatingAlert message={error} slideAnim={slideAnim} />
 
       <View style={styles.logoContainer}>
         <LottieView
