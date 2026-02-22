@@ -34,11 +34,7 @@ const SERVICES_DATA = Array.from({ length: 20 }).map((_, i) => ({
 // ================= HEADER =================
 const Header = ({ navigation }) => (
   <View style={localStyles.headerSection}>
-    <TouchableOpacity onPress={() => navigation?.goBack()}>
-      <Icon name="chevron-back" size={28} color={LOCAL_COLORS.textSecondary} />
-    </TouchableOpacity>
     <Text style={globalStyles.titleText}>Rokh</Text>
-    <View style={{ width: 28 }} />
   </View>
 );
 
@@ -179,9 +175,10 @@ const ExploreScreen = ({ navigation }) => {
 const localStyles = StyleSheet.create({
   headerSection: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 20,
+    marginBottom: 15,
+    marginTop:3
   },
   sectionContainer: {
     marginBottom: 20,
