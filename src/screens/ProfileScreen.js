@@ -87,7 +87,7 @@ const ProfileScreen = () => {
             <Text style={styles.bioTitle}>توضیحات مدل</Text>
             <Text style={styles.bioText}>
               با فعال کردن این امکان میتوانید با دریافت ناتیفیکیشن یا پیام متنی
-              از سمت کسبو کار هایی که نیاز به مدل دارند از خدمات رایگان و پرتخیفف بهرمند شوید.{' '}
+              از سمت کسب و کار هایی که نیاز به مدل دارند از خدمات رایگان و پرتخیفف بهرمند شوید.{' '}
             </Text>
           </View>
         </View>
@@ -203,7 +203,7 @@ const styles = StyleSheet.create({
   },
   headerContainer: {
     paddingHorizontal: 20,
-    marginTop: 30,
+    marginTop: '10%',
   },
   userInfoRow: {
     flexDirection: 'row',

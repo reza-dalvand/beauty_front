@@ -1,15 +1,14 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { View, StyleSheet, Platform } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 // کدهای قبلی اسکرین‌ها...
 import ExploreScreen from '../screens/ExploreScreen';
 import HomeScreen from '../screens/HomeScreen';
 import CreatePostScreen from '../screens/CreatePostScreen';
-import ProfileScreen from '../screens/ProfileScreen';
-
+import ProfileStack from './ProfileStack';
 const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => {
@@ -29,7 +28,7 @@ const TabNavigator = () => {
           position: 'absolute', // شناور کردن منو
           backgroundColor: '#1A1A1A',
           borderTopWidth: 0,
-          bottom: insets.bottom > 0 ? insets.bottom + 5 : 15, 
+          bottom: insets.bottom > 0 ? insets.bottom + 5 : 15,
           left: 20,
           right: 20,
           height: 65,
@@ -46,7 +45,7 @@ const TabNavigator = () => {
         tabBarInactiveTintColor: '#888',
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
-          
+
           if (route.name === 'خانه') {
             iconName = focused ? 'home' : 'home-outline';
           } else if (route.name === 'اکسپلور') {
@@ -60,24 +59,24 @@ const TabNavigator = () => {
             );
           } else if (route.name === 'پروفایل') {
             iconName = focused ? 'person' : 'person-outline';
-          }
-          else if (route.name === 'تستی') {
+          } else if (route.name === 'تستی') {
             iconName = focused ? 'diamond' : 'diamond-outline';
           }
 
-          return <Icon name={iconName} size={focused ? 28 : 24} color={color} />;
+          return (
+            <Icon name={iconName} size={focused ? 28 : 24} color={color} />
+          );
         },
       })}>
       <Tab.Screen name="خانه" component={HomeScreen} />
       <Tab.Screen name="اکسپلور" component={ExploreScreen} />
-      <Tab.Screen 
-        name="ساخت آگهی" 
-        component={CreatePostScreen} 
+      <Tab.Screen
+        name="ساخت آگهی"
+        component={CreatePostScreen}
         options={{ tabBarLabel: () => null }} // حذف متن زیر دکمه وسط برای زیبایی
       />
-      <Tab.Screen name="پروفایل" component={ProfileScreen} />
-      <Tab.Screen name="تستی" component={ProfileScreen} />
-
+      <Tab.Screen name="پروفایل" component={ProfileStack} />
+      {/* <Tab.Screen name="تستی" component={ProfileStack} /> */}
     </Tab.Navigator>
   );
 };
