@@ -9,7 +9,7 @@ import {
   Image,
   SafeAreaView,
   KeyboardAvoidingView,
-  Platform
+  Platform,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -20,37 +20,40 @@ const COLORS = {
   textMain: '#FFFFFF',
   textSub: '#A0A0A0',
   border: '#333',
-  error: '#E53935'
+  error: '#E53935',
 };
 
 const EditProfileScreen = ({ navigation }) => {
   const [name, setName] = useState('رضا محبی');
-  const [phone, setPhone] = useState('09123456789');
+  const [phone] = useState('09123456789');
   const [bio, setBio] = useState('در جستجوی بهترین خدمات زیبایی...');
 
   return (
     <SafeAreaView style={styles.container}>
-      <KeyboardAvoidingView 
+      <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        style={{ flex: 1 }}
-      >
+        style={{ flex: 1 }}>
+
         {/* هدر صفحه */}
-        <View style={styles.header}>
+        {/* <View style={styles.header}>
           <TouchableOpacity onPress={() => navigation.goBack()}>
             <Icon name="chevron-forward-outline" size={28} color={COLORS.textMain} />
           </TouchableOpacity>
           <Text style={styles.headerTitle}>ویرایش مشخصات</Text>
-          <View style={{ width: 28 }} /> {/* برای بالانس شدن هدر */}
-        </View>
+          <View style={{ width: 28 }} />
+        </View> */}
 
-        <ScrollView contentContainerStyle={styles.scrollContent}>
-          
+        <ScrollView
+          contentContainerStyle={styles.scrollContent}
+          keyboardShouldPersistTaps="handled"
+          showsVerticalScrollIndicator={false}>
+
           {/* بخش تغییر عکس پروفایل */}
           <View style={styles.avatarSection}>
             <View style={styles.avatarWrapper}>
-              <Image 
-                source={{ uri: 'https://i.pravatar.cc/150?img=33' }} 
-                style={styles.avatar} 
+              <Image
+                source={{ uri: 'https://i.pravatar.cc/150?img=33' }}
+                style={styles.avatar}
               />
               <TouchableOpacity style={styles.changePicBtn}>
                 <Icon name="camera" size={20} color={COLORS.background} />
@@ -61,11 +64,12 @@ const EditProfileScreen = ({ navigation }) => {
 
           {/* فرم مشخصات */}
           <View style={styles.form}>
-            
+
+            {/* نام */}
             <View style={styles.inputGroup}>
               <Text style={styles.label}>نام و نام خانوادگی</Text>
               <View style={styles.inputWrapper}>
-                <TextInput 
+                <TextInput
                   style={styles.input}
                   value={name}
                   onChangeText={setName}
@@ -76,13 +80,14 @@ const EditProfileScreen = ({ navigation }) => {
               </View>
             </View>
 
+            {/* موبایل - غیر قابل ویرایش */}
             <View style={styles.inputGroup}>
               <Text style={styles.label}>شماره موبایل</Text>
               <View style={[styles.inputWrapper, styles.disabledInput]}>
-                <TextInput 
+                <TextInput
                   style={[styles.input, { color: COLORS.textSub }]}
                   value={phone}
-                  editable={false} // معمولاً موبایل در این مرحله غیرقابل ویرایش است
+                  editable={false}
                   textAlign="right"
                 />
                 <Icon name="call-outline" size={20} color={COLORS.textSub} />
@@ -90,25 +95,33 @@ const EditProfileScreen = ({ navigation }) => {
               <Text style={styles.helperText}>شماره موبایل قابل تغییر نیست</Text>
             </View>
 
+            {/* بیوگرافی */}
             <View style={styles.inputGroup}>
               <Text style={styles.label}>توضیحات (بیوگرافی)</Text>
-              <View style={[styles.inputWrapper, { alignItems: 'flex-start', height: 100, paddingTop: 10 }]}>
-                <TextInput 
-                  style={[styles.input, { height: '100%' }]}
+              <View style={[styles.inputWrapper, styles.bioWrapper]}>
+                <TextInput
+                  style={[styles.input, styles.bioInput]}
                   value={bio}
                   onChangeText={setBio}
                   multiline
                   numberOfLines={4}
                   textAlign="right"
+                  textAlignVertical="top"
+                  placeholderTextColor={COLORS.textSub}
                 />
-                <Icon name="document-text-outline" size={20} color={COLORS.gold} />
+                <Icon
+                  name="document-text-outline"
+                  size={20}
+                  color={COLORS.gold}
+                  style={{ alignSelf: 'flex-start', marginTop: 4 }}
+                />
               </View>
             </View>
 
           </View>
 
           {/* دکمه ذخیره */}
-          <TouchableOpacity style={styles.saveBtn}>
+          <TouchableOpacity style={styles.saveBtn} activeOpacity={0.8}>
             <Text style={styles.saveBtnText}>ذخیره تغییرات</Text>
           </TouchableOpacity>
 
@@ -139,12 +152,12 @@ const styles = StyleSheet.create({
     fontFamily: 'vazir',
   },
   scrollContent: {
-    paddingBottom: 150, // فضا برای دکمه ذخیره و منوی پایین
     paddingHorizontal: 20,
+    paddingBottom: 150,
   },
   avatarSection: {
     alignItems: 'center',
-    marginTop: 30,
+    marginTop: "15%",
     marginBottom: 40,
   },
   avatarWrapper: {
@@ -187,10 +200,10 @@ const styles = StyleSheet.create({
     marginBottom: 8,
     fontSize: 14,
     fontFamily: 'vazir',
-    textAlign: 'right',
+    textAlign: 'left',
   },
   inputWrapper: {
-    flexDirection: 'row',
+    flexDirection: 'row-reverse',
     backgroundColor: COLORS.surface,
     borderRadius: 12,
     borderWidth: 1,
@@ -199,12 +212,22 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 15,
   },
+  bioWrapper: {
+    height: 110,
+    alignItems: 'flex-end',
+    paddingTop: 10,
+    paddingBottom: 10,
+  },
   input: {
     flex: 1,
     color: COLORS.textMain,
     fontFamily: 'vazir',
     fontSize: 15,
     marginRight: 10,
+  },
+  bioInput: {
+    height: '100%',
+    textAlignVertical: 'top',
   },
   disabledInput: {
     backgroundColor: '#121212',
@@ -213,7 +236,7 @@ const styles = StyleSheet.create({
   helperText: {
     color: COLORS.textSub,
     fontSize: 11,
-    textAlign: 'right',
+    textAlign: 'left',
     marginTop: 5,
     fontFamily: 'vazir',
   },

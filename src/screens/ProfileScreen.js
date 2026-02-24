@@ -22,7 +22,7 @@ const COLORS = {
   borderDark: '#333333',
 };
 
-const ProfileScreen = () => {
+const ProfileScreen = ({ navigation }) => {
   const [isModelEnabled, setIsModelEnabled] = useState(false);
 
   // داده‌های تستی
@@ -62,7 +62,9 @@ const ProfileScreen = () => {
               <Text style={styles.userPhone}>09123456789</Text>
 
               {/* دکمه ویرایش مشخصات که درخواست کرده بودی */}
-              <TouchableOpacity style={styles.editProfileBtn}>
+              <TouchableOpacity
+                onPress={() => navigation.navigate('editProfile')} // ← این خط اضافه بشه
+                style={styles.editProfileBtn}>
                 <Icon name="pencil" size={14} color={COLORS.background} />
                 <Text style={styles.editProfileText}>ویرایش مشخصات</Text>
               </TouchableOpacity>
@@ -87,7 +89,8 @@ const ProfileScreen = () => {
             <Text style={styles.bioTitle}>توضیحات مدل</Text>
             <Text style={styles.bioText}>
               با فعال کردن این امکان میتوانید با دریافت ناتیفیکیشن یا پیام متنی
-              از سمت کسب و کار هایی که نیاز به مدل دارند از خدمات رایگان و پرتخیفف بهرمند شوید.{' '}
+              از سمت کسب و کار هایی که نیاز به مدل دارند از خدمات رایگان و
+              پرتخیفف بهرمند شوید.{' '}
             </Text>
           </View>
         </View>

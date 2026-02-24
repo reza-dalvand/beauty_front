@@ -76,7 +76,7 @@ const TabNavigator = () => {
         options={{ tabBarLabel: () => null }} // حذف متن زیر دکمه وسط برای زیبایی
       />
       <Tab.Screen name="پروفایل" component={ProfileStack} />
-      {/* <Tab.Screen name="تستی" component={ProfileStack} /> */}
+      <Tab.Screen name="تستی" component={ProfileStack} />
     </Tab.Navigator>
   );
 };
