@@ -59,8 +59,8 @@ const TabNavigator = () => {
             );
           } else if (route.name === 'پروفایل') {
             iconName = focused ? 'person' : 'person-outline';
-          } else if (route.name === 'تستی') {
-            iconName = focused ? 'diamond' : 'diamond-outline';
+          } else if (route.name === 'خدمات من') {
+            iconName = focused ? "briefcase" : 'briefcase-outline';
           }
 
           return (
@@ -76,7 +76,7 @@ const TabNavigator = () => {
         options={{ tabBarLabel: () => null }} // حذف متن زیر دکمه وسط برای زیبایی
       />
       <Tab.Screen name="پروفایل" component={ProfileStack} />
-      <Tab.Screen name="تستی" component={ProfileStack} />
+      <Tab.Screen name='خدمات من' component={ProfileStack} />
     </Tab.Navigator>
   );
 };
