@@ -1,35 +1,69 @@
 // src/components/explore/PortfolioPostModal.js
 import React, { useState, useRef } from 'react';
 import {
-  View, Text, Image, Modal, TouchableOpacity, StyleSheet,
-  FlatList, TextInput, KeyboardAvoidingView, Platform,
-  ScrollView, Dimensions, TouchableWithoutFeedback, Animated,
+  View,
+  Text,
+  Image,
+  Modal,
+  TouchableOpacity,
+  StyleSheet,
+  FlatList,
+  TextInput,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+  Dimensions,
+  TouchableWithoutFeedback,
+  Animated,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { COLORS, FONTS, RADII, SHADOWS } from '../../theme/appTheme';
 
-const { width: SCREEN_W, height: SCREEN_H } = Dimensions.get('window');
+const { width: SCREEN_W } = Dimensions.get('window');
 
 // ─── داده‌های تستی کامنت ────────────────────────────
 const MOCK_COMMENTS = [
-  { id: 'c1', user: 'نیلوفر', avatar: 'https://i.pravatar.cc/40?img=5',  text: 'واقعاً عالی شده! 😍' },
-  { id: 'c2', user: 'مهسا',   avatar: 'https://i.pravatar.cc/40?img=9',  text: 'چه رنگ قشنگی، چند ساعت طول کشید؟' },
-  { id: 'c3', user: 'زهرا',   avatar: 'https://i.pravatar.cc/40?img=16', text: 'دستت درد نکنه، استاد!' },
+  {
+    id: 'c1',
+    user: 'نیلوفر',
+    avatar: 'https://i.pravatar.cc/40?img=5',
+    text: 'واقعاً عالی شده! 😍',
+  },
+  {
+    id: 'c2',
+    user: 'مهسا',
+    avatar: 'https://i.pravatar.cc/40?img=9',
+    text: 'چه رنگ قشنگی، چند ساعت طول کشید؟',
+  },
+  {
+    id: 'c3',
+    user: 'زهرا',
+    avatar: 'https://i.pravatar.cc/40?img=16',
+    text: 'دستت درد نکنه، استاد!',
+  },
 ];
 
 // ─── نقطه‌های اندیکاتور اسلایدر ─────────────────────
 const ImageDots = ({ count, activeIndex }) => (
   <View style={dotStyles.container}>
     {Array.from({ length: count }).map((_, i) => (
-      <View key={i} style={[dotStyles.dot, i === activeIndex && dotStyles.dotActive]} />
+      <View
+        key={i}
+        style={[dotStyles.dot, i === activeIndex && dotStyles.dotActive]}
+      />
     ))}
   </View>
 );
 
 const dotStyles = StyleSheet.create({
-  container: { flexDirection: 'row', justifyContent: 'center', gap: 5, marginVertical: 10 },
-  dot:       { width: 6, height: 6, borderRadius: 3, backgroundColor: COLORS.border },
+  container: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    gap: 5,
+    marginVertical: 10,
+  },
+  dot: { width: 6, height: 6, borderRadius: 3, backgroundColor: COLORS.border },
   dotActive: { backgroundColor: COLORS.gold, width: 18 },
 });
 
@@ -45,11 +79,39 @@ const CommentItem = ({ item }) => (
 );
 
 const commentStyles = StyleSheet.create({
-  row:    { flexDirection: 'row-reverse', alignItems: 'flex-start', marginBottom: 14, gap: 10 },
-  avatar: { width: 34, height: 34, borderRadius: 17, borderWidth: 1, borderColor: COLORS.border },
-  bubble: { flex: 1, backgroundColor: COLORS.surface, borderRadius: RADII.md, padding: 10, alignItems: 'flex-end' },
-  user:   { color: COLORS.gold, fontSize: 12, fontFamily: FONTS.bold, marginBottom: 3 },
-  text:   { color: COLORS.textMain, fontSize: 13, fontFamily: FONTS.regular, textAlign: 'right', lineHeight: 20 },
+  row: {
+    flexDirection: 'row-reverse',
+    alignItems: 'flex-start',
+    marginBottom: 14,
+    gap: 10,
+  },
+  avatar: {
+    width: 34,
+    height: 34,
+    borderRadius: 17,
+    borderWidth: 1,
+    borderColor: COLORS.border,
+  },
+  bubble: {
+    flex: 1,
+    backgroundColor: COLORS.surface,
+    borderRadius: RADII.md,
+    padding: 10,
+    alignItems: 'flex-end',
+  },
+  user: {
+    color: COLORS.gold,
+    fontSize: 12,
+    fontFamily: FONTS.bold,
+    marginBottom: 3,
+  },
+  text: {
+    color: COLORS.textMain,
+    fontSize: 13,
+    fontFamily: FONTS.regular,
+    textAlign: 'right',
+    lineHeight: 20,
+  },
 });
 
 // ═══════════════════════════════════════════════════
@@ -57,13 +119,13 @@ const commentStyles = StyleSheet.create({
 // ═══════════════════════════════════════════════════
 const PortfolioPostModal = ({ visible, post, onClose }) => {
   const insets = useSafeAreaInsets();
-  const [liked, setLiked]           = useState(false);
-  const [likeCount, setLikeCount]   = useState(post?.likes ?? 0);
-  const [saved, setSaved]           = useState(false);
+  const [liked, setLiked] = useState(false);
+  const [likeCount, setLikeCount] = useState(post?.likes ?? 0);
+  const [saved, setSaved] = useState(false);
   const [commentText, setCommentText] = useState('');
-  const [comments, setComments]     = useState(MOCK_COMMENTS);
-  const [activeImg, setActiveImg]   = useState(0);
-  const heartScale                  = useRef(new Animated.Value(1)).current;
+  const [comments, setComments] = useState(MOCK_COMMENTS);
+  const [activeImg, setActiveImg] = useState(0);
+  const heartScale = useRef(new Animated.Value(1)).current;
 
   if (!post) return null;
 
@@ -73,12 +135,16 @@ const PortfolioPostModal = ({ visible, post, onClose }) => {
   const handleLike = () => {
     setLiked(v => {
       const next = !v;
-      setLikeCount(c => next ? c + 1 : c - 1);
+      setLikeCount(c => (next ? c + 1 : c - 1));
       return next;
     });
     Animated.sequence([
-      Animated.spring(heartScale, { toValue: 1.4, useNativeDriver: true, bounciness: 20 }),
-      Animated.spring(heartScale, { toValue: 1,   useNativeDriver: true }),
+      Animated.spring(heartScale, {
+        toValue: 1.4,
+        useNativeDriver: true,
+        bounciness: 20,
+      }),
+      Animated.spring(heartScale, { toValue: 1, useNativeDriver: true }),
     ]).start();
   };
 
@@ -86,19 +152,28 @@ const PortfolioPostModal = ({ visible, post, onClose }) => {
   const handleSendComment = () => {
     if (!commentText.trim()) return;
     setComments(prev => [
-      { id: Date.now().toString(), user: 'شما', avatar: 'https://i.pravatar.cc/40?img=33', text: commentText.trim() },
+      {
+        id: Date.now().toString(),
+        user: 'شما',
+        avatar: 'https://i.pravatar.cc/40?img=33',
+        text: commentText.trim(),
+      },
       ...prev,
     ]);
     setCommentText('');
   };
 
   return (
-    <Modal visible={visible} transparent={false} animationType="slide" onRequestClose={onClose} statusBarTranslucent>
+    <Modal
+      visible={visible}
+      transparent={false}
+      animationType="slide"
+      onRequestClose={onClose}
+      statusBarTranslucent>
       <View style={[styles.container, { paddingTop: insets.top }]}>
         <KeyboardAvoidingView
           behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
           style={{ flex: 1 }}>
-
           {/* ── هدر: اطلاعات صاحب پست ── */}
           <View style={styles.header}>
             <TouchableOpacity onPress={onClose} style={styles.closeBtn}>
@@ -109,12 +184,16 @@ const PortfolioPostModal = ({ visible, post, onClose }) => {
                 <Text style={styles.ownerName}>{post.businessName}</Text>
                 <Text style={styles.ownerCategory}>{post.category}</Text>
               </View>
-              <Image source={{ uri: post.businessAvatar }} style={styles.ownerAvatar} />
+              <Image
+                source={{ uri: post.businessAvatar }}
+                style={styles.ownerAvatar}
+              />
             </View>
           </View>
 
-          <ScrollView showsVerticalScrollIndicator={false} keyboardShouldPersistTaps="handled">
-
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            keyboardShouldPersistTaps="handled">
             {/* ── اسلایدر عکس‌ها ── */}
             <FlatList
               data={images}
@@ -123,7 +202,9 @@ const PortfolioPostModal = ({ visible, post, onClose }) => {
               showsHorizontalScrollIndicator={false}
               keyExtractor={(_, i) => i.toString()}
               onMomentumScrollEnd={e => {
-                setActiveImg(Math.round(e.nativeEvent.contentOffset.x / SCREEN_W));
+                setActiveImg(
+                  Math.round(e.nativeEvent.contentOffset.x / SCREEN_W),
+                );
               }}
               renderItem={({ item }) => (
                 <TouchableWithoutFeedback onPress={handleLike}>
@@ -137,37 +218,59 @@ const PortfolioPostModal = ({ visible, post, onClose }) => {
             />
 
             {/* نقطه‌های اندیکاتور */}
-            {images.length > 1 && <ImageDots count={images.length} activeIndex={activeImg} />}
+            {images.length > 1 && (
+              <ImageDots count={images.length} activeIndex={activeImg} />
+            )}
 
             {/* ── اکشن‌بار: لایک / کامنت / شیر / سیو ── */}
             <View style={styles.actions}>
               {/* سمت راست */}
               <View style={styles.actionsRight}>
-                <TouchableOpacity style={styles.actionBtn} onPress={handleLike} activeOpacity={0.7}>
+                <TouchableOpacity
+                  style={styles.actionBtn}
+                  onPress={handleLike}
+                  activeOpacity={0.7}>
                   <Animated.View style={{ transform: [{ scale: heartScale }] }}>
-                    <Icon name={liked ? 'heart' : 'heart-outline'} size={26}
-                      color={liked ? '#FF4757' : COLORS.textMain} />
+                    <Icon
+                      name={liked ? 'heart' : 'heart-outline'}
+                      size={26}
+                      color={liked ? '#FF4757' : COLORS.textMain}
+                    />
                   </Animated.View>
-                  <Text style={[styles.actionCount, liked && { color: '#FF4757' }]}>
+                  <Text
+                    style={[styles.actionCount, liked && { color: '#FF4757' }]}>
                     {likeCount}
                   </Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity style={styles.actionBtn} activeOpacity={0.7}>
-                  <Icon name="chatbubble-outline" size={24} color={COLORS.textMain} />
+                  <Icon
+                    name="chatbubble-outline"
+                    size={24}
+                    color={COLORS.textMain}
+                  />
                   <Text style={styles.actionCount}>{comments.length}</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity style={styles.actionBtn} activeOpacity={0.7}>
-                  <Icon name="paper-plane-outline" size={24} color={COLORS.textMain} />
+                  <Icon
+                    name="paper-plane-outline"
+                    size={24}
+                    color={COLORS.textMain}
+                  />
                   <Text style={styles.actionCount}>اشتراک</Text>
                 </TouchableOpacity>
               </View>
 
               {/* سمت چپ: ذخیره */}
-              <TouchableOpacity onPress={() => setSaved(v => !v)} activeOpacity={0.7}>
-                <Icon name={saved ? 'bookmark' : 'bookmark-outline'} size={25}
-                  color={saved ? COLORS.gold : COLORS.textMain} />
+              <TouchableOpacity
+                onPress={() => setSaved(v => !v)}
+                activeOpacity={0.7}>
+                <Icon
+                  name={saved ? 'bookmark' : 'bookmark-outline'}
+                  size={25}
+                  color={saved ? COLORS.gold : COLORS.textMain}
+                />
               </TouchableOpacity>
             </View>
 
@@ -175,7 +278,7 @@ const PortfolioPostModal = ({ visible, post, onClose }) => {
             {post.caption && (
               <View style={styles.captionWrap}>
                 <Text style={styles.caption}>
-                  <Text style={styles.captionUser}>{post.businessName}  </Text>
+                  <Text style={styles.captionUser}>{post.businessName} </Text>
                   {post.caption}
                 </Text>
               </View>
@@ -183,15 +286,25 @@ const PortfolioPostModal = ({ visible, post, onClose }) => {
 
             {/* ── کامنت‌ها ── */}
             <View style={styles.commentsSection}>
-              <Text style={styles.commentsTitle}>نظرات ({comments.length})</Text>
-              {comments.map(c => <CommentItem key={c.id} item={c} />)}
+              <Text style={styles.commentsTitle}>
+                نظرات ({comments.length})
+              </Text>
+              {comments.map(c => (
+                <CommentItem key={c.id} item={c} />
+              ))}
             </View>
-
           </ScrollView>
 
           {/* ── اینپوت کامنت (پایین ثابت) ── */}
-          <View style={[styles.commentInput, { paddingBottom: insets.bottom > 0 ? insets.bottom : 12 }]}>
-            <TouchableOpacity style={styles.sendBtn} onPress={handleSendComment} activeOpacity={0.8}>
+          <View
+            style={[
+              styles.commentInput,
+              { paddingBottom: insets.bottom > 0 ? insets.bottom : 12 },
+            ]}>
+            <TouchableOpacity
+              style={styles.sendBtn}
+              onPress={handleSendComment}
+              activeOpacity={0.8}>
               <Icon name="send" size={18} color={COLORS.background} />
             </TouchableOpacity>
             <TextInput
@@ -209,7 +322,6 @@ const PortfolioPostModal = ({ visible, post, onClose }) => {
               style={styles.myAvatar}
             />
           </View>
-
         </KeyboardAvoidingView>
       </View>
     </Modal>

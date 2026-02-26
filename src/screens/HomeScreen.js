@@ -32,6 +32,7 @@ import ServiceCard from '../components/shared/ServiceCard';
 
 // ─── کامپوننت‌های اختصاصی Home ───────────────────────
 import HomeHeader from '../components/home/HomeHeader';
+import HomeBanner from '../components/home/HomeBanner';
 
 // ─── داده‌های تستی ───────────────────────────────────
 const CATEGORIES = ['همه', 'ناخن', 'مو', 'پاکسازی', 'لیزر', 'میکاپ'];
@@ -76,6 +77,8 @@ const HomeScreen = ({ navigation }) => {
         notifCount={3}
         onNotifPress={() => console.log('notifications')}
       />
+
+      <HomeBanner onBannerPress={b => console.log('banner:', b.title)} />
 
       <SearchBar
         value={query}

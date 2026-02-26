@@ -3,7 +3,8 @@
 // ✅ کاملاً کامپوننت‌بندی شده - بدون استایل تکراری
 // ====================================================
 import React, { useState } from 'react';
-import { View, ScrollView, SafeAreaView, StyleSheet } from 'react-native';
+import { View, ScrollView, StyleSheet, StatusBar } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { COLORS } from '../theme/appTheme';
 import ProfileHeader from '../components/profile/ProfileHeader';
@@ -41,10 +42,12 @@ const APPOINTMENTS = [
 // ─────────────────────────────────────────────────────
 
 const ProfileScreen = ({ navigation }) => {
+  const insets = useSafeAreaInsets();
   const [isModelEnabled, setIsModelEnabled] = useState(false);
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={[styles.container, { paddingTop: insets.top }]}>
+      <StatusBar backgroundColor="#0B0B0B" barStyle="light-content" />
       <ScrollView contentContainerStyle={styles.scroll}>
         {/* ① هدر کاربر */}
         <ProfileHeader
@@ -97,7 +100,7 @@ const ProfileScreen = ({ navigation }) => {
           style={styles.logoutBtn}
         />
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 };
 

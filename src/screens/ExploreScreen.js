@@ -10,10 +10,14 @@
 // ====================================================
 import React, { useState, useMemo } from 'react';
 import {
-  View, Text, FlatList, TouchableOpacity,
-  StatusBar, StyleSheet, Platform,
+  View,
+  Text,
+  FlatList,
+  TouchableOpacity,
+  StatusBar,
+  StyleSheet,
 } from 'react-native';
-import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import { COLORS, FONTS, RADII, SHADOWS } from '../theme/appTheme';
@@ -84,21 +88,29 @@ const PROVIDERS_DATA = [
 const PORTFOLIO_DATA = Array.from({ length: 18 }).map((_, i) => ({
   id: `post-${i}`,
   // هر پست ۱ تا ۳ عکس داره
-  images: Array.from({ length: (i % 3) + 1 }).map((_, j) =>
-    `https://picsum.photos/seed/${i * 10 + j}/400/400`
+  images: Array.from({ length: (i % 3) + 1 }).map(
+    (_, j) => `https://picsum.photos/seed/${i * 10 + j}/400/400`,
   ),
   businessName: ['سالن رز', 'کلینیک رخ', 'آتلیه آریا', 'مرکز لیلا'][i % 4],
   businessAvatar: `https://i.pravatar.cc/80?img=${(i % 4) + 20}`,
   category: ['ناخن', 'پوست', 'مو', 'میکاپ'][i % 4],
   likes: Math.floor(Math.random() * 500) + 50,
-  caption: ['کاشت ناخن ژل با طرح فرنچ 💅', 'فیشیال تخصصی با دستگاه RF ✨', 'کراتین برزیلی نتیجه فوق‌العاده 🌟', 'میکاپ عروس افتخار ما 👰'][i % 4],
+  caption: [
+    'کاشت ناخن ژل با طرح فرنچ 💅',
+    'فیشیال تخصصی با دستگاه RF ✨',
+    'کراتین برزیلی نتیجه فوق‌العاده 🌟',
+    'میکاپ عروس افتخار ما 👰',
+  ][i % 4],
 }));
 
 // ─── تب سوئیچر بالای صفحه ────────────────────────────
 const ViewToggle = ({ activeView, onToggle }) => (
   <View style={toggleStyles.container}>
     <TouchableOpacity
-      style={[toggleStyles.btn, activeView === 'portfolio' && toggleStyles.btnActive]}
+      style={[
+        toggleStyles.btn,
+        activeView === 'portfolio' && toggleStyles.btnActive,
+      ]}
       onPress={() => onToggle('portfolio')}
       activeOpacity={0.8}>
       <Icon
@@ -106,13 +118,20 @@ const ViewToggle = ({ activeView, onToggle }) => (
         size={16}
         color={activeView === 'portfolio' ? COLORS.background : COLORS.textSub}
       />
-      <Text style={[toggleStyles.text, activeView === 'portfolio' && toggleStyles.textActive]}>
+      <Text
+        style={[
+          toggleStyles.text,
+          activeView === 'portfolio' && toggleStyles.textActive,
+        ]}>
         نمونه کارها
       </Text>
     </TouchableOpacity>
 
     <TouchableOpacity
-      style={[toggleStyles.btn, activeView === 'providers' && toggleStyles.btnActive]}
+      style={[
+        toggleStyles.btn,
+        activeView === 'providers' && toggleStyles.btnActive,
+      ]}
       onPress={() => onToggle('providers')}
       activeOpacity={0.8}>
       <Icon
@@ -120,7 +139,11 @@ const ViewToggle = ({ activeView, onToggle }) => (
         size={16}
         color={activeView === 'providers' ? COLORS.background : COLORS.textSub}
       />
-      <Text style={[toggleStyles.text, activeView === 'providers' && toggleStyles.textActive]}>
+      <Text
+        style={[
+          toggleStyles.text,
+          activeView === 'providers' && toggleStyles.textActive,
+        ]}>
         متخصصین
       </Text>
     </TouchableOpacity>
@@ -173,18 +196,30 @@ const ExploreScreen = ({ navigation }) => {
   const [filterVisible, setFilterVisible] = useState(false);
 
   // ── فیلتر متخصصین ──
-  const filteredProviders = useMemo(() =>
-    PROVIDERS_DATA.filter(p =>
-      (!query || p.name.includes(query) || p.tags.some(t => t.includes(query))) &&
-      (selectedCat === 'همه' || p.category.includes(selectedCat))
-    ), [query, selectedCat]);
+  const filteredProviders = useMemo(
+    () =>
+      PROVIDERS_DATA.filter(
+        p =>
+          (!query ||
+            p.name.includes(query) ||
+            p.tags.some(t => t.includes(query))) &&
+          (selectedCat === 'همه' || p.category.includes(selectedCat)),
+      ),
+    [query, selectedCat],
+  );
 
   // ── فیلتر نمونه کارها ──
-  const filteredPortfolio = useMemo(() =>
-    PORTFOLIO_DATA.filter(p =>
-      (!query || p.businessName.includes(query) || p.caption?.includes(query)) &&
-      (selectedCat === 'همه' || p.category === selectedCat)
-    ), [query, selectedCat]);
+  const filteredPortfolio = useMemo(
+    () =>
+      PORTFOLIO_DATA.filter(
+        p =>
+          (!query ||
+            p.businessName.includes(query) ||
+            p.caption?.includes(query)) &&
+          (selectedCat === 'همه' || p.category === selectedCat),
+      ),
+    [query, selectedCat],
+  );
 
   // ── هدر مشترک هر دو حالت ──
   const ListHeader = () => (
@@ -216,7 +251,9 @@ const ExploreScreen = ({ navigation }) => {
       {/* عنوان بخش */}
       <SectionHeader
         title={activeView === 'providers' ? 'متخصصین' : 'نمونه کارها'}
-        iconName={activeView === 'providers' ? 'people-outline' : 'images-outline'}
+        iconName={
+          activeView === 'providers' ? 'people-outline' : 'images-outline'
+        }
         actionLabel="همه"
         style={styles.sectionHeaderStyle}
       />
@@ -227,7 +264,10 @@ const ExploreScreen = ({ navigation }) => {
   if (activeView === 'providers') {
     return (
       <View style={[styles.container, { paddingTop: insets.top }]}>
-        <StatusBar backgroundColor={COLORS.background} barStyle="light-content" />
+        <StatusBar
+          backgroundColor={COLORS.background}
+          barStyle="light-content"
+        />
         <FlatList
           data={filteredProviders}
           keyExtractor={item => item.id}
@@ -274,9 +314,13 @@ const EmptyState = ({ query }) => (
   <View style={styles.emptyState}>
     <Icon name="search-outline" size={48} color={COLORS.border} />
     <Text style={styles.emptyTitle}>
-      {query ? `نتیجه‌ای برای "${query}" پیدا نشد` : 'موردی برای نمایش وجود ندارد'}
+      {query
+        ? `نتیجه‌ای برای "${query}" پیدا نشد`
+        : 'موردی برای نمایش وجود ندارد'}
     </Text>
-    <Text style={styles.emptySubtitle}>دسته‌بندی یا فیلتر دیگری را امتحان کنید</Text>
+    <Text style={styles.emptySubtitle}>
+      دسته‌بندی یا فیلتر دیگری را امتحان کنید
+    </Text>
   </View>
 );
 

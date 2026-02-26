@@ -1,8 +1,15 @@
 // src/components/explore/ExploreFilterModal.js
 import React, { useState, useRef } from 'react';
 import {
-  View, Text, Modal, TouchableOpacity, StyleSheet,
-  ScrollView, TouchableWithoutFeedback, Animated, FlatList,
+  View,
+  Text,
+  Modal,
+  TouchableOpacity,
+  StyleSheet,
+  ScrollView,
+  TouchableWithoutFeedback,
+  Animated,
+  FlatList,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -10,55 +17,155 @@ import { COLORS, FONTS, RADII, SHADOWS } from '../../theme/appTheme';
 
 // ─── داده‌های کامل استان‌ها ───────────────────────────
 const PROVINCES_CITIES = {
-  'تهران':              ['تهران', 'شهریار', 'ری', 'اسلامشهر', 'پردیس', 'ورامین', 'دماوند', 'فیروزکوه', 'پاکدشت'],
-  'اصفهان':             ['اصفهان', 'کاشان', 'نجف‌آباد', 'خمینی‌شهر', 'شاهین‌شهر', 'مبارکه', 'اردستان', 'گلپایگان'],
-  'فارس':               ['شیراز', 'مرودشت', 'کازرون', 'جهرم', 'فسا', 'داراب', 'آباده', 'لارستان'],
-  'خراسان رضوی':        ['مشهد', 'نیشابور', 'سبزوار', 'تربت‌حیدریه', 'قوچان', 'کاشمر', 'تایباد', 'گناباد'],
-  'آذربایجان شرقی':     ['تبریز', 'مراغه', 'مرند', 'اهر', 'میانه', 'بناب', 'عجبشیر', 'ملکان'],
-  'آذربایجان غربی':     ['ارومیه', 'خوی', 'مهاباد', 'بوکان', 'میاندوآب', 'سلماس', 'تکاب'],
-  'مازندران':           ['ساری', 'آمل', 'بابل', 'قائمشهر', 'چالوس', 'نوشهر', 'تنکابن', 'بابلسر'],
-  'گیلان':              ['رشت', 'بندرانزلی', 'لاهیجان', 'لنگرود', 'رودبار', 'آستانه اشرفیه', 'صومعه‌سرا'],
-  'البرز':              ['کرج', 'فردیس', 'نظرآباد', 'هشتگرد', 'محمدشهر', 'اشتهارد'],
-  'کرمانشاه':           ['کرمانشاه', 'اسلام‌آباد', 'هرسین', 'سنقر', 'جوانرود', 'کنگاور', 'صحنه'],
-  'خوزستان':            ['اهواز', 'آبادان', 'خرمشهر', 'دزفول', 'بهبهان', 'اندیمشک', 'مسجدسلیمان'],
-  'کرمان':              ['کرمان', 'رفسنجان', 'بم', 'جیرفت', 'زرند', 'سیرجان', 'شهربابک'],
-  'سیستان و بلوچستان':  ['زاهدان', 'چابهار', 'ایرانشهر', 'خاش', 'سراوان', 'زابل'],
-  'همدان':              ['همدان', 'ملایر', 'نهاوند', 'کبودرآهنگ', 'اسدآباد', 'تویسرکان'],
-  'لرستان':             ['خرم‌آباد', 'بروجرد', 'الیگودرز', 'دورود', 'ازنا', 'کوهدشت'],
-  'قزوین':              ['قزوین', 'البرز', 'آبیک', 'بوئین‌زهرا', 'تاکستان'],
-  'سمنان':              ['سمنان', 'شاهرود', 'دامغان', 'گرمسار', 'مهدیشهر'],
-  'زنجان':              ['زنجان', 'ابهر', 'خرمدره', 'قیدار', 'ماهنشان'],
-  'اردبیل':             ['اردبیل', 'پارس‌آباد', 'مشگین‌شهر', 'خلخال', 'نمین'],
-  'قم':                 ['قم'],
+  تهران: [
+    'تهران',
+    'شهریار',
+    'ری',
+    'اسلامشهر',
+    'پردیس',
+    'ورامین',
+    'دماوند',
+    'فیروزکوه',
+    'پاکدشت',
+  ],
+  اصفهان: [
+    'اصفهان',
+    'کاشان',
+    'نجف‌آباد',
+    'خمینی‌شهر',
+    'شاهین‌شهر',
+    'مبارکه',
+    'اردستان',
+    'گلپایگان',
+  ],
+  فارس: [
+    'شیراز',
+    'مرودشت',
+    'کازرون',
+    'جهرم',
+    'فسا',
+    'داراب',
+    'آباده',
+    'لارستان',
+  ],
+  'خراسان رضوی': [
+    'مشهد',
+    'نیشابور',
+    'سبزوار',
+    'تربت‌حیدریه',
+    'قوچان',
+    'کاشمر',
+    'تایباد',
+    'گناباد',
+  ],
+  'آذربایجان شرقی': [
+    'تبریز',
+    'مراغه',
+    'مرند',
+    'اهر',
+    'میانه',
+    'بناب',
+    'عجبشیر',
+    'ملکان',
+  ],
+  'آذربایجان غربی': [
+    'ارومیه',
+    'خوی',
+    'مهاباد',
+    'بوکان',
+    'میاندوآب',
+    'سلماس',
+    'تکاب',
+  ],
+  مازندران: [
+    'ساری',
+    'آمل',
+    'بابل',
+    'قائمشهر',
+    'چالوس',
+    'نوشهر',
+    'تنکابن',
+    'بابلسر',
+  ],
+  گیلان: [
+    'رشت',
+    'بندرانزلی',
+    'لاهیجان',
+    'لنگرود',
+    'رودبار',
+    'آستانه اشرفیه',
+    'صومعه‌سرا',
+  ],
+  البرز: ['کرج', 'فردیس', 'نظرآباد', 'هشتگرد', 'محمدشهر', 'اشتهارد'],
+  کرمانشاه: [
+    'کرمانشاه',
+    'اسلام‌آباد',
+    'هرسین',
+    'سنقر',
+    'جوانرود',
+    'کنگاور',
+    'صحنه',
+  ],
+  خوزستان: [
+    'اهواز',
+    'آبادان',
+    'خرمشهر',
+    'دزفول',
+    'بهبهان',
+    'اندیمشک',
+    'مسجدسلیمان',
+  ],
+  کرمان: ['کرمان', 'رفسنجان', 'بم', 'جیرفت', 'زرند', 'سیرجان', 'شهربابک'],
+  'سیستان و بلوچستان': [
+    'زاهدان',
+    'چابهار',
+    'ایرانشهر',
+    'خاش',
+    'سراوان',
+    'زابل',
+  ],
+  همدان: ['همدان', 'ملایر', 'نهاوند', 'کبودرآهنگ', 'اسدآباد', 'تویسرکان'],
+  لرستان: ['خرم‌آباد', 'بروجرد', 'الیگودرز', 'دورود', 'ازنا', 'کوهدشت'],
+  قزوین: ['قزوین', 'البرز', 'آبیک', 'بوئین‌زهرا', 'تاکستان'],
+  سمنان: ['سمنان', 'شاهرود', 'دامغان', 'گرمسار', 'مهدیشهر'],
+  زنجان: ['زنجان', 'ابهر', 'خرمدره', 'قیدار', 'ماهنشان'],
+  اردبیل: ['اردبیل', 'پارس‌آباد', 'مشگین‌شهر', 'خلخال', 'نمین'],
+  قم: ['قم'],
   'چهارمحال و بختیاری': ['شهرکرد', 'بروجن', 'فارسان', 'لردگان'],
-  'بوشهر':              ['بوشهر', 'برازجان', 'گناوه', 'دیر', 'کنگان'],
-  'هرمزگان':            ['بندرعباس', 'بندرلنگه', 'قشم', 'کیش', 'میناب', 'حاجی‌آباد'],
+  بوشهر: ['بوشهر', 'برازجان', 'گناوه', 'دیر', 'کنگان'],
+  هرمزگان: ['بندرعباس', 'بندرلنگه', 'قشم', 'کیش', 'میناب', 'حاجی‌آباد'],
   'کهگیلویه و بویراحمد': ['یاسوج', 'گچساران', 'دوگنبدان', 'سی‌سخت'],
-  'مرکزی':              ['اراک', 'ساوه', 'خمین', 'محلات', 'تفرش', 'آشتیان'],
-  'ایلام':              ['ایلام', 'مهران', 'دهلران', 'آبدانان', 'دره‌شهر'],
-  'گلستان':             ['گرگان', 'گنبدکاووس', 'آق‌قلا', 'علی‌آباد', 'کردکوی'],
-  'گلستان':             ['گرگان', 'گنبدکاووس', 'آق‌قلا', 'علی‌آباد کتول', 'کردکوی'],
-  'خراسان شمالی':       ['بجنورد', 'شیروان', 'اسفراین', 'جاجرم', 'مانه و سملقان'],
-  'خراسان جنوبی':       ['بیرجند', 'قاین', 'فردوس', 'بشرویه', 'طبس'],
-  'یزد':                ['یزد', 'میبد', 'اردکان', 'ابرکوه', 'بافق', 'طبس'],
-  'گلستان':             ['گرگان', 'گنبدکاووس', 'آق‌قلا', 'علی‌آباد کتول', 'کردکوی'],
+  مرکزی: ['اراک', 'ساوه', 'خمین', 'محلات', 'تفرش', 'آشتیان'],
+  ایلام: ['ایلام', 'مهران', 'دهلران', 'آبدانان', 'دره‌شهر'],
+  گلستان: ['گرگان', 'گنبدکاووس', 'آق‌قلا', 'علی‌آباد کتول', 'کردکوی', 'بندرگز'],
+  'خراسان شمالی': ['بجنورد', 'شیروان', 'اسفراین', 'جاجرم', 'مانه و سملقان'],
+  'خراسان جنوبی': ['بیرجند', 'قاین', 'فردوس', 'بشرویه', 'طبس'],
+  یزد: ['یزد', 'میبد', 'اردکان', 'ابرکوه', 'بافق'],
 };
 
 const BUSINESS_TYPES = [
-  { id: 'nail',    label: 'ناخن',         icon: 'color-palette-outline' },
-  { id: 'hair',    label: 'مو',           icon: 'cut-outline' },
-  { id: 'skin',    label: 'پوست و لیزر',  icon: 'sparkles-outline' },
-  { id: 'makeup',  label: 'میکاپ',        icon: 'brush-outline' },
-  { id: 'brow',    label: 'ابرو و مژه',   icon: 'eye-outline' },
-  { id: 'massage', label: 'ماساژ',        icon: 'hand-left-outline' },
-  { id: 'tattoo',  label: 'تاتو',         icon: 'pencil-outline' },
-  { id: 'salon',   label: 'سالن جامع',    icon: 'storefront-outline' },
+  { id: 'nail', label: 'ناخن', icon: 'color-palette-outline' },
+  { id: 'hair', label: 'مو', icon: 'cut-outline' },
+  { id: 'skin', label: 'پوست و لیزر', icon: 'sparkles-outline' },
+  { id: 'makeup', label: 'میکاپ', icon: 'brush-outline' },
+  { id: 'brow', label: 'ابرو و مژه', icon: 'eye-outline' },
+  { id: 'massage', label: 'ماساژ', icon: 'hand-left-outline' },
+  { id: 'tattoo', label: 'تاتو', icon: 'pencil-outline' },
+  { id: 'salon', label: 'سالن جامع', icon: 'storefront-outline' },
 ];
 
 // ═══════════════════════════════════════════════════
 //  DROPDOWN COMPONENT
 // ═══════════════════════════════════════════════════
-const Dropdown = ({ label, icon, selected, items, onSelect, disabled, placeholder }) => {
+const Dropdown = ({
+  label,
+  icon,
+  selected,
+  items,
+  onSelect,
+  disabled,
+  placeholder,
+}) => {
   const [open, setOpen] = useState(false);
   const rotateAnim = useRef(new Animated.Value(0)).current;
 
@@ -74,10 +181,15 @@ const Dropdown = ({ label, icon, selected, items, onSelect, disabled, placeholde
     setOpen(v => !v);
   };
 
-  const handleSelect = (item) => {
+  const handleSelect = item => {
     onSelect(item);
     setOpen(false);
-    Animated.spring(rotateAnim, { toValue: 0, useNativeDriver: true, speed: 20, bounciness: 0 }).start();
+    Animated.spring(rotateAnim, {
+      toValue: 0,
+      useNativeDriver: true,
+      speed: 20,
+      bounciness: 0,
+    }).start();
   };
 
   const chevronRotate = rotateAnim.interpolate({
@@ -97,13 +209,14 @@ const Dropdown = ({ label, icon, selected, items, onSelect, disabled, placeholde
         ]}
         onPress={toggleOpen}
         activeOpacity={0.8}>
-
         {/* سمت راست: آیکون + متن */}
         <View style={dropdownStyles.triggerRight}>
           <Icon
             name={icon}
             size={16}
-            color={disabled ? COLORS.border : selected ? COLORS.gold : COLORS.textSub}
+            color={
+              disabled ? COLORS.border : selected ? COLORS.gold : COLORS.textSub
+            }
           />
           <View style={dropdownStyles.triggerTexts}>
             <Text style={dropdownStyles.triggerLabel}>{label}</Text>
@@ -145,7 +258,7 @@ const Dropdown = ({ label, icon, selected, items, onSelect, disabled, placeholde
 
           <FlatList
             data={items}
-            keyExtractor={(item) => item}
+            keyExtractor={item => item}
             nestedScrollEnabled
             style={dropdownStyles.list}
             showsVerticalScrollIndicator
@@ -154,7 +267,10 @@ const Dropdown = ({ label, icon, selected, items, onSelect, disabled, placeholde
               const isSelected = selected === item;
               return (
                 <TouchableOpacity
-                  style={[dropdownStyles.item, isSelected && dropdownStyles.itemActive]}
+                  style={[
+                    dropdownStyles.item,
+                    isSelected && dropdownStyles.itemActive,
+                  ]}
                   onPress={() => handleSelect(item)}
                   activeOpacity={0.75}>
                   <Icon
@@ -162,7 +278,11 @@ const Dropdown = ({ label, icon, selected, items, onSelect, disabled, placeholde
                     size={16}
                     color={isSelected ? COLORS.gold : COLORS.border}
                   />
-                  <Text style={[dropdownStyles.itemText, isSelected && dropdownStyles.itemTextActive]}>
+                  <Text
+                    style={[
+                      dropdownStyles.itemText,
+                      isSelected && dropdownStyles.itemTextActive,
+                    ]}>
                     {item}
                   </Text>
                 </TouchableOpacity>
@@ -294,8 +414,16 @@ const Chip = ({ label, active, onPress, icon }) => (
     style={[styles.chip, active && styles.chipActive]}
     onPress={onPress}
     activeOpacity={0.75}>
-    {icon && <Icon name={icon} size={13} color={active ? COLORS.gold : COLORS.textSub} />}
-    <Text style={[styles.chipText, active && styles.chipTextActive]}>{label}</Text>
+    {icon && (
+      <Icon
+        name={icon}
+        size={13}
+        color={active ? COLORS.gold : COLORS.textSub}
+      />
+    )}
+    <Text style={[styles.chipText, active && styles.chipTextActive]}>
+      {label}
+    </Text>
     {active && <Icon name="checkmark" size={12} color={COLORS.gold} />}
   </TouchableOpacity>
 );
@@ -324,18 +452,18 @@ const ExploreFilterModal = ({ visible, onClose, onApply }) => {
   const insets = useSafeAreaInsets();
 
   const [selectedProvince, setSelectedProvince] = useState(null);
-  const [selectedCity, setSelectedCity]         = useState(null);
-  const [selectedTypes, setSelectedTypes]       = useState([]);
+  const [selectedCity, setSelectedCity] = useState(null);
+  const [selectedTypes, setSelectedTypes] = useState([]);
 
   const provinceList = Object.keys(PROVINCES_CITIES);
-  const cityList     = selectedProvince ? PROVINCES_CITIES[selectedProvince] : [];
+  const cityList = selectedProvince ? PROVINCES_CITIES[selectedProvince] : [];
 
-  const toggleType = (id) =>
+  const toggleType = id =>
     setSelectedTypes(prev =>
-      prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]
+      prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id],
     );
 
-  const handleSelectProvince = (p) => {
+  const handleSelectProvince = p => {
     setSelectedProvince(p);
     setSelectedCity(null);
   };
@@ -347,7 +475,11 @@ const ExploreFilterModal = ({ visible, onClose, onApply }) => {
   };
 
   const handleApply = () => {
-    onApply?.({ province: selectedProvince, city: selectedCity, businessTypes: selectedTypes });
+    onApply?.({
+      province: selectedProvince,
+      city: selectedCity,
+      businessTypes: selectedTypes,
+    });
     onClose();
   };
 
@@ -361,13 +493,15 @@ const ExploreFilterModal = ({ visible, onClose, onApply }) => {
       animationType="slide"
       onRequestClose={onClose}
       statusBarTranslucent>
-
       <TouchableWithoutFeedback onPress={onClose}>
         <View style={styles.overlay} />
       </TouchableWithoutFeedback>
 
-      <View style={[styles.sheet, { paddingBottom: insets.bottom > 0 ? insets.bottom : 24 }]}>
-
+      <View
+        style={[
+          styles.sheet,
+          { paddingBottom: insets.bottom > 0 ? insets.bottom : 24 },
+        ]}>
         {/* هندل */}
         <View style={styles.handle} />
 
@@ -392,77 +526,75 @@ const ExploreFilterModal = ({ visible, onClose, onApply }) => {
         </View>
 
         {/* ─── محتوا ─── */}
-        <FlatList
-  data={[{ key: 'content' }]}
-  keyExtractor={(item) => item.key}
-  showsVerticalScrollIndicator={false}
-  keyboardShouldPersistTaps="handled"
-  contentContainerStyle={styles.scrollContent}
-  renderItem={() => (
-    <>
-      {/* ── ① موقعیت مکانی ── */}
-      <SectionTitle
-        icon="location-outline"
-        label="موقعیت مکانی"
-        count={(selectedProvince ? 1 : 0) + (selectedCity ? 1 : 0)}
-      />
-
-      <Dropdown
-        label="استان"
-        icon="map-outline"
-        selected={selectedProvince}
-        items={provinceList}
-        onSelect={handleSelectProvince}
-        placeholder="استان را انتخاب کنید"
-      />
-
-      <View style={styles.cityDropdownWrap}>
-        <Dropdown
-          label="شهر"
-          icon="location-outline"
-          selected={selectedCity}
-          items={cityList}
-          onSelect={setSelectedCity}
-          disabled={!selectedProvince}
-          placeholder={
-            selectedProvince
-              ? 'شهر را انتخاب کنید'
-              : 'ابتدا استان را انتخاب کنید'
-          }
-        />
-      </View>
-
-      <View style={styles.divider} />
-
-      <SectionTitle
-        icon="storefront-outline"
-        label="نوع کسب‌وکار"
-        count={selectedTypes.length}
-      />
-
-      <View style={styles.chipsGrid}>
-        {BUSINESS_TYPES.map((t) => (
-          <Chip
-            key={t.id}
-            label={t.label}
-            icon={t.icon}
-            active={selectedTypes.includes(t.id)}
-            onPress={() => toggleType(t.id)}
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={styles.scrollContent}
+          keyboardShouldPersistTaps="handled"
+          nestedScrollEnabled>
+          {/* ── ① موقعیت مکانی ── */}
+          <SectionTitle
+            icon="location-outline"
+            label="موقعیت مکانی"
+            count={(selectedProvince ? 1 : 0) + (selectedCity ? 1 : 0)}
           />
-        ))}
-      </View>
-    </>
-  )}
-/>
+
+          {/* دراپ‌داون استان */}
+          <Dropdown
+            label="استان"
+            icon="map-outline"
+            selected={selectedProvince}
+            items={provinceList}
+            onSelect={handleSelectProvince}
+            placeholder="استان را انتخاب کنید"
+          />
+
+          {/* دراپ‌داون شهر */}
+          <View style={styles.cityDropdownWrap}>
+            <Dropdown
+              label="شهر"
+              icon="location-outline"
+              selected={selectedCity}
+              items={cityList}
+              onSelect={setSelectedCity}
+              disabled={!selectedProvince}
+              placeholder={
+                selectedProvince
+                  ? 'شهر را انتخاب کنید'
+                  : 'ابتدا استان را انتخاب کنید'
+              }
+            />
+          </View>
+
+          {/* ── ② نوع کسب‌وکار ── */}
+          <View style={styles.divider} />
+          <SectionTitle
+            icon="storefront-outline"
+            label="نوع کسب‌وکار"
+            count={selectedTypes.length}
+          />
+          <View style={styles.chipsGrid}>
+            {BUSINESS_TYPES.map(t => (
+              <Chip
+                key={t.id}
+                label={t.label}
+                icon={t.icon}
+                active={selectedTypes.includes(t.id)}
+                onPress={() => toggleType(t.id)}
+              />
+            ))}
+          </View>
+        </ScrollView>
 
         {/* دکمه اعمال */}
-        <TouchableOpacity style={styles.applyBtn} onPress={handleApply} activeOpacity={0.85}>
+        <TouchableOpacity
+          style={styles.applyBtn}
+          onPress={handleApply}
+          activeOpacity={0.85}>
           <Text style={styles.applyBtnText}>
             {activeCount > 0 ? `اعمال ${activeCount} فیلتر` : 'اعمال فیلتر'}
           </Text>
           <Icon name="options-outline" size={18} color={COLORS.background} />
         </TouchableOpacity>
-
       </View>
     </Modal>
   );
