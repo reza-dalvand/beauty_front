@@ -7,7 +7,7 @@ import {
 import { COLORS, FONTS, RADII, SHADOWS } from '../../theme/appTheme';
 
 const { width: SCREEN_W } = Dimensions.get('window');
-const BANNER_W = SCREEN_W - 32; // با padding دو طرف
+const BANNER_W = SCREEN_W; // با padding دو طرف
 const BANNER_H = BANNER_W * 0.42;
 
 const BANNERS = [
@@ -103,6 +103,7 @@ const styles = StyleSheet.create({
   listContent: {
     paddingHorizontal: 16,
     gap: 12,
+    padding:5
   },
   bannerCard: {
     width: BANNER_W,
@@ -119,7 +120,7 @@ const styles = StyleSheet.create({
   overlay: {
     flex: 1,
     justifyContent: 'flex-start',
-    padding: 14,
+    padding: 20,
   },
   bannerTitle: {
     color: '#FFF',
