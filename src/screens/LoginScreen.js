@@ -1,149 +1,276 @@
+// src/screens/LoginScreen.js
+// ====================================================
+// ✅ لاگین با شماره تماس — بدون ایمیل/پسورد
+//
+// کامپوننت‌های shared استفاده‌شده:
+//   ← PhoneInput  (وارد کردن شماره)
+//   ← OtpInput    (کد تایید ۵ رقمی)
+//
+// مرحله ۱: شماره تلفن → validate → ارسال کد
+// مرحله ۲: کد OTP → تایید → navigate به MainTabs
+// ====================================================
 import React, { useState, useRef } from 'react';
 import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  Animated,
-  KeyboardAvoidingView,
-  Platform,
+  View, Text, StyleSheet, TouchableOpacity,
+  KeyboardAvoidingView, Platform, Animated,
+  StatusBar,
 } from 'react-native';
 import LottieView from 'lottie-react-native';
-import { globalStyles } from '../theme/globalStyles';
-import CustomInput from '../components/CustomInput';
-import CustomButton from '../components/CustomButton';
-import WarningFloatingAlert from '../components/FloatingAlert';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
+import { COLORS, FONTS, RADII, SHADOWS } from '../theme/appTheme';
+import PhoneInput from '../components/shared/PhoneInput';
+import OtpInput   from '../components/shared/OtpInput';
+
+// ─── اعتبارسنجی شماره ایران ──────────────────────────
+const isValidPhone = (phone) => /^09\d{9}$/.test(phone.trim());
+
+// ═══════════════════════════════════════════════════
+//  MAIN SCREEN
+// ═══════════════════════════════════════════════════
 const LoginScreen = ({ navigation }) => {
-  const [step, setStep] = useState(1);
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [otpCode, setOtpCode] = useState('');
-  const [error, setError] = useState('');
+  const insets = useSafeAreaInsets();
 
-  const slideAnim = useRef(new Animated.Value(-120)).current;
+  const [step, setStep]           = useState(1); // 1: شماره | 2: کد OTP
+  const [phone, setPhone]         = useState('');
+  const [otp, setOtp]             = useState('');
+  const [phoneError, setPhoneError] = useState('');
+  const [otpError, setOtpError]   = useState('');
 
-  const showAlert = message => {
-    setError(message);
-    Animated.spring(slideAnim, {
-      toValue: Platform.OS === 'ios' ? 60 : 30,
-      useNativeDriver: true,
-      bounciness: 10,
-    }).start();
+  // ── انیمیشن Floating Alert ──
+  const slideAnim = useRef(new Animated.Value(-100)).current;
 
-    setTimeout(() => {
-      Animated.timing(slideAnim, {
-        toValue: -120,
-        duration: 500,
+  const showAlert = (msg) => {
+    Animated.sequence([
+      Animated.spring(slideAnim, {
+        toValue: Platform.OS === 'ios' ? 60 : 30,
         useNativeDriver: true,
-      }).start(() => setError(''));
-    }, 3000);
+        bounciness: 10,
+      }),
+      Animated.delay(2800),
+      Animated.timing(slideAnim, {
+        toValue: -100,
+        duration: 400,
+        useNativeDriver: true,
+      }),
+    ]).start();
   };
 
-  const validatePhone = phone => {
-    const regex = /^09\d{9}$/;
-    return regex.test(phone);
-  };
-
-  const handleAction = () => {
-    if (step === 1) {
-      if (validatePhone(phoneNumber)) {
-        setError('');
-        setStep(2);
-      } else {
-        showAlert('⚠️ شماره موبایل وارد شده صحیح نیست');
-      }
-    } else {
-      if (otpCode.length === 5) {
-        console.log('ورود موفق');
-        navigation.replace('Explore');
-      } else {
-        showAlert('کد تایید باید ۵ رقم باشد 🔢');
-      }
+  // ── مرحله اول: ارسال کد ──
+  const handleSendOtp = () => {
+    if (!isValidPhone(phone)) {
+      setPhoneError('شماره موبایل وارد شده صحیح نیست');
+      showAlert('شماره موبایل وارد شده صحیح نیست');
+      return;
     }
+    setPhoneError('');
+    setStep(2);
   };
+
+  // ── مرحله دوم: تایید کد ──
+  const handleVerifyOtp = () => {
+    if (otp.length < 4) {
+      setOtpError('کد تایید باید ۴ رقم باشد');
+      return;
+    }
+    setOtpError('');
+    navigation.replace('MainTabs');
+  };
+
+  const handleAction = () => step === 1 ? handleSendOtp() : handleVerifyOtp();
+
+  const handleEditPhone = () => {
+    setStep(1);
+    setOtp('');
+    setOtpError('');
+  };
+
   return (
     <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      style={globalStyles.container}>
-      <WarningFloatingAlert message={error} slideAnim={slideAnim} />
+      style={[styles.container, { paddingTop: insets.top }]}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
 
-      <View style={styles.logoContainer}>
+      <StatusBar backgroundColor={COLORS.background} barStyle="light-content" />
+
+      {/* ── انیمیشن Lottie ── */}
+      <View style={styles.lottieWrap}>
         <LottieView
-          source={
-            step === 1
-              ? require('../assets/images/Login.json')
-              : require('../assets/images/otp.json')
-          }
+          source={step === 1
+            ? require('../assets/images/Login.json')
+            : require('../assets/images/otp.json')}
           autoPlay
           loop
-          style={styles.lottieAnimation}
+          style={styles.lottie}
         />
       </View>
 
-      <View style={styles.formGroup}>
-        <Text style={styles.welcomeText}>
+      {/* ── فرم ── */}
+      <View style={styles.formCard}>
+
+        {/* عنوان */}
+        <Text style={styles.title}>
+          {step === 1 ? 'ورود به روکه' : 'کد تایید'}
+        </Text>
+        <Text style={styles.subtitle}>
           {step === 1
             ? 'شماره موبایل خود را وارد کنید'
-            : 'کد تایید را وارد کنید'}
+            : `کد ارسال شده به ${phone} را وارد کنید`}
         </Text>
 
-        <CustomInput
-          placeholder={step === 1 ? '0912XXXXXXX' : '- - - - -'}
-          keyboardType="numeric"
-          maxLength={step === 1 ? 11 : 5}
-          value={step === 1 ? phoneNumber : otpCode}
-          onChangeText={text => {
-            setError(''); // با تایپ مجدد، ارور پاک شود
-            step === 1 ? setPhoneNumber(text) : setOtpCode(text);
-          }}
-          autoFocus={step === 2}
-          isOtp={step === 2} // با این پراپ به اینپوت می‌فهمونیم که استایل طلایی و فاصله دار (کد تایید) بگیره
-        />
+        {/* ── مرحله ۱: اینپوت شماره ── */}
+        {step === 1 && (
+          <PhoneInput
+            value={phone}
+            onChangeText={(t) => { setPhone(t); setPhoneError(''); }}
+            error={phoneError}
+            style={styles.input}
+          />
+        )}
 
+        {/* ── مرحله ۲: اینپوت OTP ── */}
         {step === 2 && (
-          <TouchableOpacity
-            onPress={() => setStep(1)}
-            style={{ marginBottom: 10 }}>
-            <Text style={styles.changeNumberText}>
-              ویرایش شماره {phoneNumber}
-            </Text>
+          <>
+            <OtpInput
+              value={otp}
+              onChangeValue={(v) => { setOtp(v); setOtpError(''); }}
+              error={otpError}
+            />
+
+            {/* ویرایش شماره */}
+            <TouchableOpacity style={styles.editPhoneBtn} onPress={handleEditPhone} activeOpacity={0.7}>
+              <Text style={styles.editPhoneText}>ویرایش شماره  {phone}</Text>
+            </TouchableOpacity>
+          </>
+        )}
+
+        {/* ── دکمه اصلی ── */}
+        <TouchableOpacity
+          style={[
+            styles.actionBtn,
+            step === 2 && otp.length === 4 && styles.actionBtnReady,
+          ]}
+          onPress={handleAction}
+          activeOpacity={0.85}>
+          <Text style={styles.actionBtnText}>
+            {step === 1 ? 'ارسال کد تایید' : 'ورود به برنامه'}
+          </Text>
+        </TouchableOpacity>
+
+        {/* ── شرایط استفاده ── */}
+        {step === 1 && (
+          <Text style={styles.terms}>
+            با ورود، <Text style={styles.termsLink}>شرایط استفاده</Text> را می‌پذیرید
+          </Text>
+        )}
+
+        {/* ── ارسال مجدد (مرحله ۲) ── */}
+        {step === 2 && (
+          <TouchableOpacity style={styles.resendBtn} activeOpacity={0.7}>
+            <Text style={styles.resendText}>ارسال مجدد کد</Text>
           </TouchableOpacity>
         )}
-        <CustomButton
-          title={step === 1 ? 'ارسال کد تایید' : 'تایید و ورود'}
-          onPress={handleAction}
-        />
+
       </View>
+
     </KeyboardAvoidingView>
   );
 };
 
 const styles = StyleSheet.create({
-  logoContainer: { alignItems: 'center', marginBottom: 15 },
-  lottieAnimation: {
-    width: '60%',
+  container: {
+    flex: 1,
+    backgroundColor: COLORS.background,
+    justifyContent: 'flex-end',
+  },
+  // ── Lottie ──
+  lottieWrap: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  lottie: {
+    width: '62%',
     aspectRatio: 1,
-    alignSelf: 'center',
-    marginBottom: 10,
   },
-  welcomeText: {
-    color: '#fff',
-    fontSize: 16,
-    fontFamily: 'vazir',
-    textAlign: 'center',
-    marginBottom: 30,
-    opacity: 0.8,
+  // ── فرم ──
+  formCard: {
+    backgroundColor: COLORS.surface,
+    borderTopLeftRadius: 32,
+    borderTopRightRadius: 32,
+    paddingHorizontal: 24,
+    paddingTop: 30,
+    paddingBottom: 40,
+    borderTopWidth: 1,
+    borderColor: 'rgba(212,175,55,0.2)',
+    gap: 16,
   },
-  changeNumberText: {
-    color: '#D4AF37',
-    textAlign: 'center',
+  title: {
+    color: COLORS.textMain,
+    fontSize: 22,
+    fontFamily: FONTS.bold,
+    textAlign: 'right',
+  },
+  subtitle: {
+    color: COLORS.textSub,
     fontSize: 13,
+    fontFamily: FONTS.regular,
+    textAlign: 'right',
+    marginTop: -8,
+  },
+  input: {
+    marginTop: 4,
+  },
+  // ── ویرایش شماره ──
+  editPhoneBtn: {
+    alignSelf: 'center',
+    marginTop: 4,
+  },
+  editPhoneText: {
+    color: COLORS.gold,
+    fontSize: 13,
+    fontFamily: FONTS.regular,
+    textDecorationLine: 'underline',
+    textAlign: 'center',
+  },
+  // ── دکمه اصلی ──
+  actionBtn: {
+    height: 54,
+    borderRadius: RADII.lg,
+    backgroundColor: COLORS.gold,
+    justifyContent: 'center',
+    alignItems: 'center',
+    opacity: 0.9,
+    ...SHADOWS.goldButton,
+    marginTop: 4,
+  },
+  actionBtnReady: {
+    opacity: 1,
+  },
+  actionBtnText: {
+    color: COLORS.background,
+    fontSize: 16,
+    fontFamily: FONTS.bold,
+  },
+  // ── شرایط ──
+  terms: {
+    color: COLORS.textSub,
+    fontSize: 11,
+    fontFamily: FONTS.regular,
+    textAlign: 'center',
+  },
+  termsLink: {
+    color: COLORS.gold,
     textDecorationLine: 'underline',
   },
-  buttonText: {
-    color: '#000',
-    fontSize: 18,
-    fontFamily: 'vazir_bold',
-    fontWeight: 'bold',
+  // ── ارسال مجدد ──
+  resendBtn: {
+    alignSelf: 'center',
+  },
+  resendText: {
+    color: COLORS.textSub,
+    fontSize: 12,
+    fontFamily: FONTS.regular,
+    textDecorationLine: 'underline',
   },
 });
 

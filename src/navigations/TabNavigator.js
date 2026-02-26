@@ -11,19 +11,19 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { View, StyleSheet } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import ExploreScreen    from '../screens/ExploreScreen';
-import HomeScreen       from '../screens/HomeScreen';
+import ExploreScreen from '../screens/ExploreScreen';
+import HomeScreen from '../screens/HomeScreen';
 import CreatePostScreen from '../screens/CreatePostScreen';
-import ProfileStack     from './ProfileStack';
-import ProvidersScreen  from '../screens/ProvidersScreen';
+import ProfileStack from './ProfileStack';
+import ProvidersScreen from '../screens/ProvidersScreen';
 
-const Tab   = createBottomTabNavigator();
+const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 // ─── Stack شامل Home + ProvidersScreen ──────────────
 const HomeStack = () => (
   <Stack.Navigator screenOptions={{ headerShown: false }}>
-    <Stack.Screen name="HomeMain"  component={HomeScreen} />
+    <Stack.Screen name="HomeMain" component={HomeScreen} />
     <Stack.Screen name="Providers" component={ProvidersScreen} />
   </Stack.Navigator>
 );
@@ -75,21 +75,21 @@ const TabNavigator = () => {
           } else if (route.name === 'پروفایل') {
             iconName = focused ? 'person' : 'person-outline';
           }
-          return <Icon name={iconName} size={focused ? 28 : 24} color={color} />;
+          return (
+            <Icon name={iconName} size={focused ? 28 : 24} color={color} />
+          );
         },
       })}>
-
       {/* HomeStack شامل Home + ProvidersScreen */}
-      <Tab.Screen name="خانه"      component={HomeStack} />
-      <Tab.Screen name="اکسپلور"   component={ExploreScreen} />
+      <Tab.Screen name="خانه" component={HomeStack} />
+      <Tab.Screen name="اکسپلور" component={ExploreScreen} />
       <Tab.Screen
         name="ساخت آگهی"
         component={CreatePostScreen}
         options={{ tabBarLabel: () => null }}
       />
-      <Tab.Screen name="پروفایل"   component={ProfileStack} />
-      <Tab.Screen name="تستی"   component={ProfileStack} />
-
+      <Tab.Screen name="پروفایل" component={ProfileStack} />
+      <Tab.Screen name="تستی" component={ProfileStack} />
     </Tab.Navigator>
   );
 };
