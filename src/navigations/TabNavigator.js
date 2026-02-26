@@ -1,9 +1,4 @@
 // src/components/TabNavigator.js
-// ====================================================
-// ProvidersScreen به عنوان Stack screen اضافه شده
-// از HomeScreen با navigation.navigate('Providers', { category })
-// فراخوانی می‌شه
-// ====================================================
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -11,16 +6,17 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { View, StyleSheet } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import ExploreScreen from '../screens/ExploreScreen';
 import HomeScreen from '../screens/HomeScreen';
+import ExploreScreen from '../screens/ExploreScreen';
 import CreatePostScreen from '../screens/CreatePostScreen';
+import BusinessDashboardScreen from '../screens/BusinessDashboardScreen';
 import ProfileStack from './ProfileStack';
 import ProvidersScreen from '../screens/ProvidersScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
-// ─── Stack شامل Home + ProvidersScreen ──────────────
+// خانه + متخصصین
 const HomeStack = () => (
   <Stack.Navigator screenOptions={{ headerShown: false }}>
     <Stack.Screen name="HomeMain" component={HomeScreen} />
@@ -28,7 +24,6 @@ const HomeStack = () => (
   </Stack.Navigator>
 );
 
-// ─── Tab Navigator اصلی ──────────────────────────────
 const TabNavigator = () => {
   const insets = useSafeAreaInsets();
 
@@ -54,7 +49,7 @@ const TabNavigator = () => {
           paddingBottom: 0,
           shadowColor: '#D4AF37',
           shadowOffset: { width: 0, height: 10 },
-          shadowOpacity: 0.1,
+          shadowOpacity: 0.12,
           shadowRadius: 10,
           elevation: 5,
         },
@@ -62,25 +57,31 @@ const TabNavigator = () => {
         tabBarInactiveTintColor: '#888',
         tabBarIcon: ({ focused, color }) => {
           let iconName;
-          if (route.name === 'خانه') {
-            iconName = focused ? 'home' : 'home-outline';
-          } else if (route.name === 'اکسپلور') {
-            iconName = focused ? 'search' : 'search-outline';
-          } else if (route.name === 'ساخت آگهی') {
-            return (
-              <View style={styles.centerButton}>
-                <Icon name="add" size={30} color="#000" />
-              </View>
-            );
-          } else if (route.name === 'پروفایل') {
-            iconName = focused ? 'person' : 'person-outline';
+          switch (route.name) {
+            case 'خانه':
+              iconName = focused ? 'home' : 'home-outline';
+              break;
+            case 'اکسپلور':
+              iconName = focused ? 'search' : 'search-outline';
+              break;
+            case 'کسب‌وکار':
+              iconName = focused ? 'storefront' : 'storefront-outline';
+              break;
+            case 'پروفایل':
+              iconName = focused ? 'person' : 'person-outline';
+              break;
+            case 'ساخت آگهی':
+              return (
+                <View style={styles.centerButton}>
+                  <Icon name="add" size={30} color="#000" />
+                </View>
+              );
           }
           return (
-            <Icon name={iconName} size={focused ? 28 : 24} color={color} />
+            <Icon name={iconName} size={focused ? 26 : 22} color={color} />
           );
         },
       })}>
-      {/* HomeStack شامل Home + ProvidersScreen */}
       <Tab.Screen name="خانه" component={HomeStack} />
       <Tab.Screen name="اکسپلور" component={ExploreScreen} />
       <Tab.Screen
@@ -88,8 +89,8 @@ const TabNavigator = () => {
         component={CreatePostScreen}
         options={{ tabBarLabel: () => null }}
       />
+      <Tab.Screen name="کسب‌وکار" component={BusinessDashboardScreen} />
       <Tab.Screen name="پروفایل" component={ProfileStack} />
-      <Tab.Screen name="تستی" component={ProfileStack} />
     </Tab.Navigator>
   );
 };
