@@ -18,10 +18,10 @@ const ServiceCard = ({ item, cardWidth, onPress }) => {
       onPress={() => onPress?.(item)}
       activeOpacity={0.85}>
 
-      {/* تصویر */}
+      {/* تصویر - تغییر: height از 0.85 به 1.1 برای بزرگ‌تر شدن کارت */}
       <Image
         source={{ uri: item.image }}
-        style={[styles.image, { width: cardWidth, height: cardWidth * 0.85 }]}
+        style={[styles.image, { width: cardWidth, height: cardWidth * 1.25 }]}
         resizeMode="cover"
       />
 

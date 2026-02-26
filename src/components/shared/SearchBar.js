@@ -48,23 +48,24 @@ const SearchBar = ({ value, onChangeText, placeholder = 'جستجو...', onFilte
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
+    flexDirection: 'row-reverse',
     alignItems: 'center',
     gap: 10,
     paddingHorizontal: 16,
-    marginBottom: 16,
   },
   inputRow: {
     flex: 1,
-    flexDirection: 'row',
+    flexDirection: 'row-reverse',
     alignItems: 'center',
     backgroundColor: COLORS.surface,
     borderRadius: RADII.md,
     paddingHorizontal: 12,
-    height: 48,
+    height: 50,
     borderWidth: 1,
     borderColor: COLORS.border,
     gap: 8,
+    marginBottom: 15,
+
   },
   focused: {
     borderColor: COLORS.gold,

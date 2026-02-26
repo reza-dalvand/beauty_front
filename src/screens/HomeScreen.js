@@ -1,242 +1,151 @@
+// src/screens/HomeScreen.js
+// ====================================================
+// ✅ کاملاً کامپوننت‌بندی شده — ساختار گرید حفظ شده
+//
+// کامپوننت‌های مشترک با سایر صفحات:
+//   ← SectionHeader   (profile & explore)
+//   ← SearchBar       (explore)
+//   ← CategoryTabs    (explore)
+//   ← ServiceCard     (explore)
+//
+// کامپوننت‌های اختصاصی Home:
+//   ← HomeHeader
+//   ← HomeBanner
+// ====================================================
 import React, { useState } from 'react';
 import {
   View,
-  Text,
   StyleSheet,
   StatusBar,
-  TextInput,
-  TouchableOpacity,
-  FlatList,
-  Image,
   useWindowDimensions,
+  FlatList,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { globalStyles } from '../theme/globalStyles';
+import { COLORS } from '../theme/appTheme';
 
-const LOCAL_COLORS = {
-  surface: '#1A1A1A',
-  cardBg: '#222222',
-  textSecondary: '#888888',
-  border: '#333333',
-  goldAccent: '#D4AF37',
-};
+// ─── کامپوننت‌های مشترک با سایر صفحات ───────────────
+import SectionHeader from '../components/shared/SectionHeader';
+import SearchBar from '../components/shared/SearchBar';
+import CategoryTabs from '../components/shared/CategoryTabs';
+import ServiceCard from '../components/shared/ServiceCard';
 
-const CATEGORIES = ['پاکسازی', 'لیزر', 'مو', 'ناخن', 'همه'];
+// ─── کامپوننت‌های اختصاصی Home ───────────────────────
+import HomeHeader from '../components/home/HomeHeader';
+
+// ─── داده‌های تستی ───────────────────────────────────
+const CATEGORIES = ['همه', 'ناخن', 'مو', 'پاکسازی', 'لیزر', 'میکاپ'];
 
 const SERVICES_DATA = Array.from({ length: 20 }).map((_, i) => ({
   id: i.toString(),
-  title: `پروتتین مو`,
-  subtitle: '',
-  image: `https://i.pravatar.cc/300?img=${i + 20}`,
+  title: ['کاشت ناخن', 'پروتئین مو', 'فیشیال', 'میکاپ مجلسی', 'لیزر', 'رنگ مو'][
+    i % 6
+  ],
+  subtitle: ['سالن رز', 'کلینیک رخ', 'آتلیه آریا'][i % 3],
+  image: `https://picsum.photos/seed/${i + 40}/300/300`,
+  rating: (4 + (i % 10) * 0.1).toFixed(1),
 }));
 
-// ================= HEADER =================
-const Header = ({ navigation }) => (
-  <View style={localStyles.headerSection}>
-    <Text style={globalStyles.titleText}>Rokh</Text>
-  </View>
-);
-
-// ================= SEARCH =================
-const SearchBox = () => {
-  const [isFocused, setIsFocused] = React.useState(false);
-  return (
-    <View style={localStyles.sectionContainer}>
-      <View style={[localStyles.searchBar, isFocused && localStyles.searchBarFocused]}>
-        <Icon
-          name="search-outline"
-          size={20}
-          color={LOCAL_COLORS.textSecondary}
-          style={{ marginRight: 10 }}
-        />
-        <TextInput
-          style={localStyles.searchInput}
-          placeholder="جستجو..."
-          placeholderTextColor={LOCAL_COLORS.textSecondary}
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
-        />
-      </View>
-    </View>
-  );
-};
-// ================= CATEGORY =================
-const CategoryTabs = ({ selectedCat, setSelectedCat }) => (
-  <View style={localStyles.sectionContainer}>
-    <FlatList
-      data={CATEGORIES}
-      horizontal
-      inverted
-      showsHorizontalScrollIndicator={false}
-      keyExtractor={item => item}
-      renderItem={({ item }) => {
-        const isSelected = selectedCat === item;
-        return (
-          <TouchableOpacity
-            style={[
-              localStyles.categoryTab,
-              isSelected && localStyles.categoryTabActive,
-            ]}
-            onPress={() => setSelectedCat(item)}>
-            <Text
-              style={[
-                localStyles.categoryText,
-                isSelected && localStyles.categoryTextActive,
-              ]}>
-              {item}
-            </Text>
-          </TouchableOpacity>
-        );
-      }}
-    />
-  </View>
-);
-
-// ================= CARD =================
-const ServiceCard = ({ item, cardWidth }) => (
-  <TouchableOpacity
-    style={[localStyles.cardContainer, { width: cardWidth }]}
-    activeOpacity={0.8}>
-    <Image
-      source={{ uri: item.image }}
-      style={[localStyles.cardImage, { width: cardWidth, height: cardWidth }]}
-      resizeMode="cover"
-    />
-    <Text style={localStyles.cardTitle} numberOfLines={1}>
-      {item.title}
-    </Text>
-    <Text style={localStyles.cardSubtitle} numberOfLines={1}>
-      {item.subtitle}
-    </Text>
-  </TouchableOpacity>
-);
-
-// ================= MAIN SCREEN =================
+// ═══════════════════════════════════════════════════
+//  MAIN SCREEN
+// ═══════════════════════════════════════════════════
 const HomeScreen = ({ navigation }) => {
-  const [selectedCat, setSelectedCat] = useState('همه');
+  const insets = useSafeAreaInsets();
   const { width } = useWindowDimensions();
+  const [query, setQuery] = useState('');
+  const [selectedCat, setSelectedCat] = useState('همه');
 
-  // ====== RESPONSIVE GRID CALCULATION ======
-  const NUM_COLUMNS = width > 600 ? 4 : 3; // تبلت 4 ستون
+  // ── محاسبه responsive grid ──
+  const NUM_COLUMNS = width > 600 ? 4 : 3;
   const SPACING = 10;
-  const HORIZONTAL_PADDING = width * 0.06;
+  const H_PAD = width * 0.06;
+  const CARD_W =
+    (width - H_PAD * 2 - SPACING * (NUM_COLUMNS - 1)) / NUM_COLUMNS;
 
-  const TOTAL_SPACING = SPACING * (NUM_COLUMNS - 1);
-  const AVAILABLE_WIDTH = width - HORIZONTAL_PADDING * 2;
-  const CARD_WIDTH = (AVAILABLE_WIDTH - TOTAL_SPACING) / NUM_COLUMNS;
+  // ── فیلتر ──
+  const filtered = SERVICES_DATA.filter(
+    s =>
+      (selectedCat === 'همه' || s.title.includes(selectedCat)) &&
+      (!query || s.title.includes(query) || s.subtitle?.includes(query)),
+  );
 
-  const renderHeaderComponent = () => (
+  // ── هدر لیست ──
+  const ListHeader = () => (
     <>
-      <Header navigation={navigation} />
-      <SearchBox />
-      <CategoryTabs selectedCat={selectedCat} setSelectedCat={setSelectedCat} />
+      <HomeHeader
+        notifCount={3}
+        onNotifPress={() => console.log('notifications')}
+      />
+
+      <SearchBar
+        value={query}
+        onChangeText={setQuery}
+        placeholder="جستجوی خدمات، سالن یا متخصص..."
+        style={styles.searchBar}
+      />
+
+      <CategoryTabs
+        categories={CATEGORIES}
+        selected={selectedCat}
+        onSelect={setSelectedCat}
+      />
+
+      <SectionHeader
+        title="خدمات"
+        iconName="sparkles-outline"
+        actionLabel="همه"
+        style={styles.sectionHeader}
+      />
     </>
   );
 
   return (
-    <View
-      style={[
-        globalStyles.container,
-        {
-          justifyContent: 'flex-start',
-          paddingTop: StatusBar.currentHeight || 20,
-        },
-      ]}>
-      <StatusBar backgroundColor="#000" barStyle="light-content" />
+    <View style={[styles.container, { paddingTop: insets.top }]}>
+      <StatusBar backgroundColor={COLORS.background} barStyle="light-content" />
 
       <FlatList
-        data={SERVICES_DATA}
+        data={filtered}
         keyExtractor={item => item.id}
         numColumns={NUM_COLUMNS}
-        columnWrapperStyle={{
-          justifyContent: 'flex-start',
-          gap: SPACING,
-          marginBottom: SPACING,
-        }}
-        contentContainerStyle={{
-          paddingHorizontal: HORIZONTAL_PADDING,
-          paddingBottom: 100,
-        }}
-        ListHeaderComponent={renderHeaderComponent}
+        key={`grid-${NUM_COLUMNS}`}
+        ListHeaderComponent={ListHeader}
+        columnWrapperStyle={styles.row}
+        contentContainerStyle={[
+          styles.listContent,
+          { paddingHorizontal: H_PAD },
+        ]}
         showsVerticalScrollIndicator={false}
         renderItem={({ item }) => (
-          <ServiceCard item={item} cardWidth={CARD_WIDTH} />
+          <ServiceCard
+            item={item}
+            cardWidth={CARD_W}
+            onPress={s => console.log('service:', s.title)}
+          />
         )}
       />
     </View>
   );
 };
 
-// ================= STYLES =================
-const localStyles = StyleSheet.create({
-  headerSection: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 15,
-    marginTop: 3,
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: COLORS.background,
   },
-  sectionContainer: {
-    marginBottom: 20,
+  listContent: {
+    paddingBottom: 120,
+  },
+  row: {
+    gap: 10,
+    marginBottom: 10,
+    justifyContent: 'flex-start',
   },
   searchBar: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: LOCAL_COLORS.surface,
-    borderRadius: 12,
-    paddingHorizontal: 15,
-    height: 50,
-    borderWidth: 1,
-    borderColor: LOCAL_COLORS.titleText,
+    marginBottom: 4,
   },
-  searchBarFocused: {
-    borderColor: LOCAL_COLORS.goldAccent,
-  },
-  searchInput: {
-    flex: 1,
-    color: '#FFFFFF',
-    fontSize: 14,
-    textAlign: 'right',
-  },
-  categoryTab: {
-    paddingVertical: 8,
-    paddingHorizontal: 16,
-    borderRadius: 20,
-    borderWidth: 1,
-    borderColor: LOCAL_COLORS.border,
-    marginRight: 10,
-  },
-  categoryTabActive: {
-    backgroundColor: LOCAL_COLORS.surface,
-    borderColor: LOCAL_COLORS.goldAccent,
-  },
-  categoryText: {
-    color: LOCAL_COLORS.textSecondary,
-    fontSize: 13,
-  },
-  categoryTextActive: {
-    color: LOCAL_COLORS.goldAccent,
-    fontWeight: 'bold',
-  },
-  cardContainer: {
-    alignItems: 'center',
-  },
-  cardImage: {
-    borderRadius: 10,
-    backgroundColor: LOCAL_COLORS.cardBg,
-    marginBottom: 8,
-  },
-  cardTitle: {
-    color: '#FFFFFF',
-    fontSize: 13,
-    textAlign: 'center',
-    marginBottom: -5,
-  },
-  cardSubtitle: {
-    color: LOCAL_COLORS.textSecondary,
-    fontSize: 9,
-    textAlign: 'center',
+  sectionHeader: {
+    marginTop: 6,
+    marginBottom: 12,
   },
 });
 
