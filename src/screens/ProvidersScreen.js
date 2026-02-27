@@ -1,14 +1,7 @@
 // src/screens/ProvidersScreen.js
 // ====================================================
-// صفحه مستقل متخصصین — طراحی کاملاً مطابق ExploreScreen
-// از HomeScreen با route.params.category فراخوانی می‌شه
-//
-// کامپوننت‌های استفاده‌شده:
-//   ← ProviderCard    (explore — بدون تغییر)
-//   ← SearchBar       (shared)
-//   ← CategoryTabs    (shared)
-//   ← SectionHeader   (shared)
-//   ← ExploreFilterModal (explore)
+// تغییر: فقط onBookPress به BusinessProfileModal وصل شد
+// ظاهر صفحه هیچ تغییری نکرده
 // ====================================================
 import React, { useState, useMemo } from 'react';
 import {
@@ -19,29 +12,26 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import { COLORS, FONTS, RADII } from '../theme/appTheme';
-
 import SearchBar          from '../components/shared/SearchBar';
 import CategoryTabs       from '../components/shared/CategoryTabs';
 import SectionHeader      from '../components/shared/SectionHeader';
 import ProviderCard       from '../components/explore/ProviderCard';
 import ExploreFilterModal from '../components/explore/ExploreFilterModal';
+import BusinessProfileModal from '../components/business/BusinessProfileModal'; // ← جدید
 
 import { ALL_PROVIDERS, PROVIDER_CATEGORIES } from '../data/providersData';
 
-// ═══════════════════════════════════════════════════
-//  MAIN SCREEN
-// ═══════════════════════════════════════════════════
 const ProvidersScreen = ({ navigation, route }) => {
   const insets = useSafeAreaInsets();
-
-  // دسته‌بندی پیش‌فرض از HomeScreen
   const initialCategory = route?.params?.category ?? 'همه';
 
-  const [query, setQuery]           = useState('');
-  const [selectedCat, setSelectedCat] = useState(initialCategory);
+  const [query,         setQuery]         = useState('');
+  const [selectedCat,   setSelectedCat]   = useState(initialCategory);
   const [filterVisible, setFilterVisible] = useState(false);
 
-  // ── فیلتر ──
+  // ─── state جدید برای مودال رزرو ───────────────
+  const [bookingProvider, setBookingProvider] = useState(null); // provider انتخاب‌شده
+
   const filtered = useMemo(() =>
     ALL_PROVIDERS.filter(p =>
       (!query || p.name.includes(query) || p.tags.some(t => t.includes(query))) &&
@@ -50,10 +40,9 @@ const ProvidersScreen = ({ navigation, route }) => {
     [query, selectedCat],
   );
 
-  // ── هدر ──
   const ListHeader = () => (
     <>
-      {/* هدر با دکمه بازگشت */}
+      {/* ظاهر کاملاً دست نخورده */}
       <View style={styles.pageHeader}>
         <TouchableOpacity style={styles.backBtn} onPress={() => navigation.goBack()} activeOpacity={0.75}>
           <Icon name="arrow-back" size={22} color={COLORS.textMain} />
@@ -99,7 +88,7 @@ const ProvidersScreen = ({ navigation, route }) => {
           <ProviderCard
             item={item}
             onPress={p => console.log('provider:', p.name)}
-            onBookPress={p => console.log('book:', p.name)}
+            onBookPress={p => setBookingProvider(p)} // ← وصل شد
           />
         )}
       />
@@ -109,11 +98,22 @@ const ProvidersScreen = ({ navigation, route }) => {
         onClose={() => setFilterVisible(false)}
         onApply={f => console.log('filters:', f)}
       />
+
+      {/* ─── مودال رزرو — نمایش پروفایل + فلو رزرو ─── */}
+      <BusinessProfileModal
+        visible={!!bookingProvider}
+        provider={bookingProvider}
+        onClose={() => setBookingProvider(null)}
+        onBooked={(booking) => {
+          // رزرو انجام شد — در app واقعی به context/store اضافه می‌شه
+          // الان فقط در state محلی نگه می‌داریم و مودال بسته می‌شه در step success
+          console.log('booked:', booking);
+        }}
+      />
     </View>
   );
 };
 
-// ── Empty State ──
 const EmptyState = ({ query }) => (
   <View style={styles.emptyState}>
     <Icon name="people-outline" size={52} color={COLORS.border} />
@@ -124,61 +124,17 @@ const EmptyState = ({ query }) => (
   </View>
 );
 
+// ظاهر استایل‌ها کاملاً دست نخورده
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: COLORS.background,
-  },
-  listContent: {
-    paddingBottom: 120,
-  },
-  // ── هدر ──
-  pageHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    paddingHorizontal: 16,
-    paddingBottom: 16,
-    gap: 8,
-  },
-  backBtn: {
-    marginRight: 'auto',
-    width: 38,
-    height: 38,
-    borderRadius: 19,
-    backgroundColor: COLORS.surface,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: COLORS.border,
-  },
-  pageTitle: {
-    color: COLORS.textMain,
-    fontSize: 22,
-    fontFamily: FONTS.bold,
-  },
-  sectionHeader: {
-    marginTop: 4,
-  },
-  // ── Empty ──
-  emptyState: {
-    alignItems: 'center',
-    paddingTop: 70,
-    gap: 10,
-    paddingHorizontal: 40,
-  },
-  emptyTitle: {
-    color: COLORS.textSub,
-    fontSize: 14,
-    fontFamily: FONTS.regular,
-    textAlign: 'center',
-  },
-  emptySubtitle: {
-    color: COLORS.border,
-    fontSize: 12,
-    fontFamily: FONTS.regular,
-    textAlign: 'center',
-  },
+  container:   { flex: 1, backgroundColor: COLORS.background },
+  listContent: { paddingBottom: 120 },
+  pageHeader:  { flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', paddingHorizontal: 16, paddingBottom: 16, gap: 8 },
+  backBtn:     { marginRight: 'auto', width: 38, height: 38, borderRadius: 19, backgroundColor: COLORS.surface, justifyContent: 'center', alignItems: 'center', borderWidth: 1, borderColor: COLORS.border },
+  pageTitle:   { color: COLORS.textMain, fontSize: 22, fontFamily: FONTS.bold },
+  sectionHeader:{ marginTop: 4 },
+  emptyState:  { alignItems: 'center', paddingTop: 70, gap: 10, paddingHorizontal: 40 },
+  emptyTitle:  { color: COLORS.textSub, fontSize: 14, fontFamily: FONTS.regular, textAlign: 'center' },
+  emptySubtitle:{ color: COLORS.border, fontSize: 12, fontFamily: FONTS.regular, textAlign: 'center' },
 });
 
 export default ProvidersScreen;
